@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { connect, ContextProvider, Button } from 'react-universal-ui';
+import { StyleSheet, View, Text, Image, } from 'react-native';
+import { connect, Button } from 'react-universal-ui';
 
-import Icon from '../../components/vector-icons/Ionicons';
-import * as appActions from '../../store/action/app';
+import ApplicationLayout from '../../components/layout';
+import particleJs from '../../components/particle';
+import { sizes, colors } from '../../utils';
 
 type Props = {
-	counter?: string,
 	dispatch?: Function,
 };
 
@@ -17,62 +17,90 @@ type Props = {
 })
 
 export default class HomeScene extends Component {
-	render() {
-		const beerIcon = <Icon
-			name="ios-beer-outline"
-			style={styles.buttonIcon}/>;
+	props: Props;
 
-		return <View style={styles.container}>
-			<Text style={styles.welcome}>
-				Welcome to React Native
-			</Text>
-			<Text style={styles.instructions}>
-				To get started, edit src/app.js
-			</Text>
-			<Text style={styles.instructions}>
-				Press Cmd+R to reload,{'\n'}
-				Cmd+D or shake for dev menu
-			</Text>
-			<Button
-				wrapperStyle={styles.buttonWrapper}
-				title={`Click me! ${this.props.counter}`}
-				icon={beerIcon}
-				onPress={this.increaseCounter}/>
-		</View>;
+	componentDidMount() {
+		setTimeout(() => particleJs('particle-header', require('./particles-light.json')), 1000);
 	}
 
-	increaseCounter = () => {
-		this.props.dispatch(appActions.increaseCounter());
-	};
+	render() {
+		return <ApplicationLayout style={styles.container}>
+			<View id="particle-header" style={styles.headingContainer}>
+				<View style={styles.headingInnerContainer}>
+					<Text style={styles.headingText}>WRITE UI ONCE (JAVASCRIPT)</Text>
+					<Text style={styles.largeHeadingText}>RUN EVERYWHERE!</Text>
+					<Text style={styles.smallHeadingText}>
+						on Web, Node (server side rendering), Native Mobile, Windows Universal, Mac, Linux..
+					</Text>
+					<View style={styles.commandsContainer}>
+						<Button wrapperStyle={styles.buttonWrapper} innerStyle={styles.buttonInner}>
+							<Text style={styles.buttonText}>INSTALL</Text>
+							<Text style={styles.buttonSmallText}>Version 0.1.71</Text>
+						</Button>
+						<Button
+							wrapperStyle={styles.transparentButtonWrapper}
+							innerStyle={styles.buttonInner}
+							title="TUTORIAL"/>
+					</View>
+				</View>
+			</View>
+		</ApplicationLayout>;
+	}
 }
+
+const headingTextStyles = {
+	color: '#ffffff', fontWeight: '200', textAlign: 'center',
+};
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
+	headingContainer: {
+		height: 600, alignItems: 'center', justifyContent: 'flex-end',
+		backgroundImage: `url(${require('./nebula.jpg')})`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+		backgroundRepeat: 'no-repeat',
 	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
+	headingInnerContainer: {
+		position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+		alignItems: 'center', justifyContent: 'center',
 	},
-	counterButton: {
-		backgroundColor: '#00bcd4',
-		width: 120, marginTop: 10,
+	headingText: {
+		...headingTextStyles, fontSize: 22,
+	},
+	smallHeadingText: {
+		...headingTextStyles, fontSize: 14, color: '#b9c0d6',
+		lineHeight: 22, maxWidth: 320,
+	},
+	largeHeadingText: {
+		...headingTextStyles,
+		fontSize: 36, fontWeight: '700',
+		marginTop: 10, marginBottom: 15,
+	},
+	commandsContainer: {
+		flexDirection: 'row',
+		marginTop: 18,
 	},
 	buttonWrapper: {
-		backgroundColor: '#00bcd4',
-		width: 120,
-		marginTop: 20,
+		backgroundColor: colors.main, borderRadius: 2,
+		width: 180, marginHorizontal: 8,
 	},
-	buttonIcon: {
-		fontSize: 28,
-		color: '#ffffff',
+	buttonInner: {
+		height: 45,
+	},
+	buttonText: {
+		fontSize: 12, color: '#ffffff', fontWeight: '500',
+		textAlign: 'center',
+	},
+	buttonSmallText: {
+		fontSize: 10, color: '#ffffff',
+		textAlign: 'center', marginTop: 3,
+	},
+	transparentButtonWrapper: {
+		backgroundColor: 'transparent',
+		borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.6)', borderRadius: 2,
+		width: 180, marginHorizontal: 8,
 	},
 });
