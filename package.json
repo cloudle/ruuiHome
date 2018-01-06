@@ -24,6 +24,7 @@
     "react-router": "^4.2.0",
     "react-router-redux": "^5.0.0-alpha.8",
     "react-universal-ui": "^0.1.71",
+    "svgs": "^3.1.2",
     "universal-vector-icons": "^4.4.1"
   },
   "devDependencies": {
