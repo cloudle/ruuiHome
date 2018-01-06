@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, } from 'react-native';
 import { connect, Button } from 'react-universal-ui';
 
-import ApplicationLayout from '../../components/layout';
+import Layout from '../../components/homeLayout';
 import particleJs from '../../components/particle';
 import { sizes, colors } from '../../utils';
 
@@ -24,7 +24,7 @@ export default class HomeScene extends Component {
 	}
 
 	render() {
-		return <ApplicationLayout style={styles.container}>
+		return <Layout style={styles.container}>
 			<View id="particle-header" style={styles.headingContainer}>
 				<View style={styles.headingInnerContainer}>
 					<Text style={styles.headingText}>WRITE UI ONCE (JAVASCRIPT)</Text>
@@ -45,7 +45,7 @@ export default class HomeScene extends Component {
 					</View>
 				</View>
 			</View>
-		</ApplicationLayout>;
+		</Layout>;
 	}
 }
 

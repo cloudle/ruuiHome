@@ -48,6 +48,7 @@
     "Paho": true,
     "Headers": true,
     "fetch": true,
-    "document": true
+    "document": true,
+    "location": true
   }
 }
