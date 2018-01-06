@@ -2,7 +2,7 @@ import tinyColorImport from 'tinycolor2';
 
 export const tinyColor = tinyColorImport;
 
-const main = '#ef5c6e';
+const main = '#de4f4f';
 const secondary = '#4A90E2';
 
 export const colors = {
