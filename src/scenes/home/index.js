@@ -40,6 +40,7 @@ export default class HomeScene extends Component {
 						<Button
 							wrapperStyle={styles.transparentButtonWrapper}
 							innerStyle={styles.buttonInner}
+							textStyle={styles.buttonText}
 							title="TUTORIAL"/>
 					</View>
 				</View>
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
 	},
 	commandsContainer: {
 		flexDirection: 'row',
-		marginTop: 18,
+		marginTop: 32,
 	},
 	buttonWrapper: {
 		backgroundColor: colors.main, borderRadius: 2,
