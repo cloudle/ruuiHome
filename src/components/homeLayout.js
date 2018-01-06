@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import Navigation from './navigation';
-import { colors, sizes, } from '../utils';
 import type { Element, Style } from '../typeDefinition';
 
 type Props = {
@@ -10,12 +9,12 @@ type Props = {
 	style?: Style,
 };
 
-export default class ApplicationLayout extends Component {
+export default class HomeLayout extends Component {
 	props: Props;
 
 	render() {
 		return <View style={[styles.container, this.props.style]}>
-			<Navigation/>
+			<Navigation style={styles.navigationContainer}/>
 			{this.props.children}
 		</View>;
 	}
@@ -23,6 +22,9 @@ export default class ApplicationLayout extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1, marginTop: sizes.navigationHeight,
+		flex: 1,
+	},
+	navigationContainer: {
+		backgroundColor: 'transparent',
 	},
 });
