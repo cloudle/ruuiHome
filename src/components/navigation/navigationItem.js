@@ -8,7 +8,7 @@ type Props = {
 	onPress?: Function,
 	style?: Style,
 	children?: Element,
-	title?: String,
+	route?: Object,
 };
 
 export default class NavigationItem extends Component {
@@ -17,14 +17,15 @@ export default class NavigationItem extends Component {
 	render() {
 		return <TouchableOpacity
 			className="navigation-item"
-			style={styles.container}>
+			style={styles.container}
+			onPress={() => this.props.onPress && this.props.onPress(this.props.route)}>
 			{this.renderContent()}
 		</TouchableOpacity>;
 	}
 
 	renderContent = () => {
 		return this.props.children || <Text className="title" style={styles.titleText}>
-			{this.props.title}
+			{this.props.route.title}
 		</Text>;
 	}
 }
