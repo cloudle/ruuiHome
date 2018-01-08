@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, View, Text, StyleSheet } from 'react-native';
+import { Animated, ScrollView, Text, StyleSheet } from 'react-native';
 import { enterAnimation } from 'react-universal-ui';
 
 import Navigation from './navigation';
@@ -31,7 +31,9 @@ export default class ApplicationLayout extends Component {
 
 		return <Animated.View style={[styles.container, wrapperStyle, this.props.style]}>
 			<Navigation style={navigationContainerStyle}/>
-			{this.props.children}
+			<ScrollView>
+				{this.props.children}
+			</ScrollView>
 		</Animated.View>;
 	}
 }
