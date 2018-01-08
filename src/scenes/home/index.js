@@ -3,8 +3,9 @@ import { StyleSheet, View, Text, Image, } from 'react-native';
 import { connect, Button } from 'react-universal-ui';
 
 import Layout from '../../components/layout';
+import ColumnSection from './columnSection';
 import particleJs from '../../components/particle';
-import { sizes, colors } from '../../utils';
+import { sizes, colors, siteConfigs } from '../../utils';
 
 type Props = {
 	dispatch?: Function,
@@ -24,27 +25,33 @@ export default class HomeScene extends Component {
 	}
 
 	render() {
+		const homeConfigs = siteConfigs.home,
+			headings = homeConfigs.heading;
+
 		return <Layout home style={styles.container}>
 			<View id="particle-header" style={styles.headingContainer}>
 				<View style={styles.headingInnerContainer}>
-					<Text style={styles.headingText}>WRITE UI ONCE (JAVASCRIPT)</Text>
-					<Text style={styles.largeHeadingText}>RUN EVERYWHERE!</Text>
-					<Text style={styles.smallHeadingText}>
-						on Web, Node (server side rendering), Native Mobile, Windows Universal, Mac, Linux..
-					</Text>
+					<Text style={styles.headingText}>{headings.heading}</Text>
+					<Text style={styles.largeHeadingText}>{headings.largeHeading}</Text>
+					<Text style={styles.smallHeadingText}>{headings.description}</Text>
 					<View style={styles.commandsContainer}>
 						<Button wrapperStyle={styles.buttonWrapper} innerStyle={styles.buttonInner}>
-							<Text style={styles.buttonText}>INSTALL</Text>
-							<Text style={styles.buttonSmallText}>Version 0.1.71</Text>
+							<Text style={styles.buttonText}>{headings.install}</Text>
+							<Text style={styles.buttonSmallText}>
+								{headings.version} {siteConfigs.ruuiVersion}
+							</Text>
 						</Button>
 						<Button
 							wrapperStyle={styles.transparentButtonWrapper}
+							rippleColor="#ffffff"
 							innerStyle={styles.buttonInner}
 							textStyle={styles.buttonText}
-							title="TUTORIAL"/>
+							title={headings.tutorial}/>
 					</View>
 				</View>
 			</View>
+
+			<ColumnSection configs={homeConfigs.whySection}/>
 		</Layout>;
 	}
 }
@@ -58,7 +65,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	headingContainer: {
-		height: 600, alignItems: 'center', justifyContent: 'flex-end',
+		height: 650, alignItems: 'center', justifyContent: 'flex-end',
 		backgroundImage: `url(${require('./nebula.jpg')})`,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center', marginTop: 3,
 	},
 	transparentButtonWrapper: {
-		backgroundColor: 'transparent',
+		backgroundColor: 'rgba(255, 255, 255, 0.2)',
 		borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.6)', borderRadius: 2,
 		width: 180, marginHorizontal: 8,
 	},
