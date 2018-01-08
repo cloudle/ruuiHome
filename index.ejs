@@ -11,7 +11,7 @@
 		body {
 			font-family: "Avenir Next",Nunito,"Helvetica Neue",Helvetica,sans-serif;
 			font-size: 14px;
-			color: #888888;
+			color: #1f2128;
 			font-weight: 400;
 			overflow: hidden;
 		}
@@ -23,6 +23,16 @@
 		.touchable {
 			cursor: pointer;
 			user-select: none;
+		}
+
+		.page-section-title:after {
+			content: '';
+			width: 65px;
+			display: block;
+			height: 1px;
+			border-bottom: 2px solid #de4f4f;
+			text-align: center;
+			margin: 10px auto 0;
 		}
 
 		.navigation-item:hover .title {
@@ -37,6 +47,11 @@
 		@font-face {
 			font-family: Entypo;
 			src: url(Entypo.ttf) format('truetype');
+		}
+
+		@font-face {
+			font-family: EvilIcons;
+			src: url(EvilIcons.ttf) format('truetype');
 		}
 
 		<% if (typeof initialStyles !== 'undefined') { %><%-initialStyles%><% } %>
