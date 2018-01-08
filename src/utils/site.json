@@ -1,0 +1,45 @@
+{
+	"siteName": "UNIVERSAL UI",
+	"ruuiVersion": "0.0.71",
+	"menus": [
+		{
+			"title": "VIDEO TUTORIALS",
+			"uri": "tutorials"
+		}, {
+			"title": "DOCS",
+			"uri": "docs"
+		}, {
+			"title": "MEETUPS",
+			"uri": "meetups"
+		}
+	],
+	"home": {
+		"heading": {
+			"heading": "WRITE UI ONCE (JAVASCRIPT)",
+			"largeHeading": "RUN EVERYWHERE!",
+			"description": "on Web, Node (server side rendering), Native Mobile, Windows Universal, Mac, Linux..",
+			"install": "INSTALL",
+			"version": "version",
+			"tutorial": "TUTORIAL"
+		},
+		"": [],
+		"whySection": {
+			"title": "WHY UNIVERSAL UI?",
+			"columns": [
+				{
+					"icon": "share-apple",
+					"heading": "Heading 1",
+					"description": "Accomplish in 10 lines what would otherwise take 1000, thanks to an integrated JavaScript stack that extends from the database to the end user's screen."
+				}, {
+					"icon": "camera",
+					"heading": "Heading 2",
+					"description": "Accomplish in 10 lines what would otherwise take 1000, thanks to an integrated JavaScript stack that extends from the database to the end user's screen."
+				}, {
+					"icon": "trophy",
+					"heading": "Heading 3",
+					"description": "Accomplish in 10 lines what would otherwise take 1000, thanks to an integrated JavaScript stack that extends from the database to the end user's screen."
+				}
+			]
+		}
+	}
+}

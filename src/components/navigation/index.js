@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 import EntypoIcon from '../vector-icons/Entypo';
 import GithubIcon from './githubIcon';
 import NavigationItem from './navigationItem';
-import { sizes, colors } from '../../utils';
+import { sizes, colors, siteConfigs } from '../../utils';
 import { Style } from '../../typeDefinition';
 
 type Props = {
@@ -35,11 +35,13 @@ export default class NavigationBar extends Component {
 			style={styles.logoContainer}
 			onPress={() => { this.props.dispatch(push('/')); }}>
 			<EntypoIcon name="circular-graph" style={styles.ruuiIcon}/>
-			<Text style={styles.repoNameText}>UNIVERSAL UI</Text>
+			<Text style={styles.repoNameText}>{siteConfigs.siteName}</Text>
 		</TouchableOpacity>;
 	};
 
 	renderNavigation = () => {
+		const menuItems = siteConfigs.menus || [];
+
 		return <View style={styles.navigationContainer}>
 			{menuItems.map((route, i) => {
 				return <NavigationItem
@@ -59,17 +61,7 @@ export default class NavigationBar extends Component {
 	};
 }
 
-const edgeSpacing = 20,
-	menuItems = [{
-		title: 'VIDEO TUTORIALS',
-		uri: '/tutorials',
-	}, {
-		title: 'DOCS',
-		uri: '/docs',
-	}, {
-		title: 'MEETUPS',
-		uri: '/meetups',
-	}];
+const edgeSpacing = 20;
 
 const styles = StyleSheet.create({
 	container: {
