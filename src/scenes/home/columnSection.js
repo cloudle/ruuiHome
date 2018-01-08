@@ -3,9 +3,11 @@ import { StyleSheet, View, Text, } from 'react-native';
 import Icon from '../../components/vector-icons/EvilIcons';
 
 import PageSection from '../../components/pageSection';
-import { Element } from '../../typeDefinition';
+import { Style, Element } from '../../typeDefinition';
 
 type Props = {
+	wrapperStyle?: Style,
+	innerStyle?: Style,
 	configs?: {
 		title?: String | Element,
 		columns?: Array<Object>,
@@ -19,11 +21,11 @@ export default class WhySection extends Component {
 		const configs = this.props.configs || {};
 
 		return <PageSection
-			wrapperStyle={styles.container}
-			innerStyle={styles.innerContainer}
+			wrapperStyle={[styles.container, this.props.wrapperStyle]}
+			innerStyle={[styles.innerContainer, this.props.innerStyle]}
 			title={configs.title}>
 			{configs.columns.map((column, i) => {
-				return <View key={i} style={styles.sectionColumnContainer}>
+				return <View className="wow fadeIn" key={i} style={styles.sectionColumnContainer}>
 					{column.icon && <Icon style={styles.columnIcon} name={column.icon}/>}
 
 					{column.heading && <Text style={styles.columnHeadingText}>

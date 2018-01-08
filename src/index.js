@@ -4,6 +4,7 @@ import { utils, connect, ContextProvider, Modal, Snackbar, Dropdown, } from 'rea
 import { Switch, Route, StaticRouter } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 
+import Layout from './components/layout';
 import HomeScene from './scenes/home';
 import DocumentScene from './scenes/docs';
 import TutorialScene from './scenes/tutorials';
@@ -30,6 +31,14 @@ type Props = {
 class App extends Component {
 	props: Props;
 
+	componentDidMount() {
+		window.addEventListener('scroll', this.onPageScroll);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.onPageScroll);
+	}
+
 	render() {
 		const Router = utils.isServer ? StaticRouter : ConnectedRouter,
 			routerProps = utils.isServer ? {
@@ -53,6 +62,17 @@ class App extends Component {
 			<Snackbar/>
 		</View>;
 	}
+
+	onPageScroll = () => {
+		const supportPageOffset = window.pageXOffset !== undefined,
+			isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat'),
+			scroll = {
+				x: supportPageOffset ? window.pageXOffset : (isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft),
+				y: supportPageOffset ? window.pageYOffset : (isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop),
+			};
+
+		this.props.dispatch(appActions.setPageScrollOffset(scroll));
+	};
 }
 
 type ContainerProps = {
@@ -68,6 +88,6 @@ export default function AppContainer(props: ContainerProps) {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+
 	},
 });

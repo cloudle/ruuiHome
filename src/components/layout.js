@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Animated, ScrollView, Text, StyleSheet } from 'react-native';
+import { Animated, View, Text, StyleSheet } from 'react-native';
 import { enterAnimation } from 'react-universal-ui';
+import { debounce } from 'lodash';
 
 import Navigation from './navigation';
 import { colors, sizes, } from '../utils';
@@ -17,29 +18,30 @@ type Props = {
 export default class ApplicationLayout extends Component {
 	props: Props;
 
+	componentDidMount() {
+		new WOW().init();
+	}
+
 	render() {
 		const opacity = this.state.enterAnimation.interpolate({
 				inputRange: [0, 1], outputRange: [0.5, 1],
 			}),
 			wrapperStyle = {
-				opacity,
 				marginTop: this.props.home ? 0 : sizes.navigationHeight,
 			},
-			navigationContainerStyle = this.props.home ? {
-				backgroundColor: 'transparent',
-			} : {};
+			animatedStyle = { opacity, };
 
-		return <Animated.View style={[styles.container, wrapperStyle, this.props.style]}>
-			<Navigation style={navigationContainerStyle}/>
-			<ScrollView>
+		return <View style={[styles.container, wrapperStyle, this.props.style]}>
+			<Navigation home={this.props.home}/>
+			<Animated.View style={animatedStyle}>
 				{this.props.children}
-			</ScrollView>
-		</Animated.View>;
+			</Animated.View>
+		</View>;
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+
 	},
 });

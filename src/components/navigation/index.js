@@ -12,11 +12,16 @@ import { Style } from '../../typeDefinition';
 type Props = {
 	dispatch?: Function,
 	style?: Style,
+	home?: Boolean,
+	pageScrollOffset?: {
+		x: Number,
+		y: Number,
+	},
 };
 
 @connect(({ app }) => {
 	return {
-
+		pageScrollOffset: app.pageScrollOffset,
 	};
 })
 
@@ -24,15 +29,20 @@ export default class NavigationBar extends Component {
 	props: Props;
 
 	render() {
-		return <View style={[styles.container, this.props.style]}>
-			{this.renderLogo()}
+		const transparent = this.props.home && this.props.pageScrollOffset.y <= 10,
+			containerStyle = transparent ? { backgroundColor: 'transparent', } : {};
+
+		return <View style={[styles.container, containerStyle, this.props.style]}>
+			{this.renderLogo(transparent)}
 			{this.renderNavigation()}
 		</View>;
 	}
 
-	renderLogo = () => {
+	renderLogo = (transparent) => {
+		const containerStyle = transparent ? {} : { backgroundColor: colors.main, };
+
 		return <TouchableOpacity
-			style={styles.logoContainer}
+			style={[styles.logoContainer, containerStyle]}
 			onPress={() => { this.props.dispatch(push('/')); }}>
 			<EntypoIcon name="circular-graph" style={styles.ruuiIcon}/>
 			<Text style={styles.repoNameText}>{siteConfigs.siteName}</Text>

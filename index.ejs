@@ -6,6 +6,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
 
+	<link rel="stylesheet" type="text/css" href="animate.min.css">
 	<style>
 		:focus { outline: none; }
 		body {
@@ -13,7 +14,7 @@
 			font-size: 14px;
 			color: #1f2128;
 			font-weight: 400;
-			overflow: hidden;
+			/*overflow-x: hidden;*/
 		}
 		#root {
 			position: absolute;
@@ -61,6 +62,7 @@
 <body>
 	<div id="root"><% if (typeof initialHtml !== 'undefined') { %><%-initialHtml%><% } %></div>
 
+	<script src="wow.min.js"></script>
   <%if (typeof htmlWebpackPlugin !== 'undefined' && !htmlWebpackPlugin.options.isProduction) { %>
 		<script src="/vendor.bundle.js"></script>
   <% } %>

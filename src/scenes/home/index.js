@@ -31,10 +31,10 @@ export default class HomeScene extends Component {
 		return <Layout home style={styles.container}>
 			<View id="particle-header" style={styles.headingContainer}>
 				<View style={styles.headingInnerContainer}>
-					<Text style={styles.headingText}>{headings.heading}</Text>
-					<Text style={styles.largeHeadingText}>{headings.largeHeading}</Text>
-					<Text style={styles.smallHeadingText}>{headings.description}</Text>
-					<View style={styles.commandsContainer}>
+					<Text className="wow bounceInDown" style={styles.headingText}>{headings.heading}</Text>
+					<Text className="wow fadeInDown" style={styles.largeHeadingText}>{headings.largeHeading}</Text>
+					<Text className="wow fadeIn" style={styles.smallHeadingText}>{headings.description}</Text>
+					<View className="wow fadeInUp" style={styles.commandsContainer}>
 						<Button wrapperStyle={styles.buttonWrapper} innerStyle={styles.buttonInner}>
 							<Text style={styles.buttonText}>{headings.install}</Text>
 							<Text style={styles.buttonSmallText}>
@@ -43,7 +43,6 @@ export default class HomeScene extends Component {
 						</Button>
 						<Button
 							wrapperStyle={styles.transparentButtonWrapper}
-							rippleColor="#ffffff"
 							innerStyle={styles.buttonInner}
 							textStyle={styles.buttonText}
 							title={headings.tutorial}/>
@@ -51,22 +50,26 @@ export default class HomeScene extends Component {
 				</View>
 			</View>
 
+			<View style={{ height: 200 }}/>
 			<ColumnSection configs={homeConfigs.whySection}/>
+			<View style={{ height: 1000 }}/>
 		</Layout>;
 	}
 }
 
 const headingTextStyles = {
-	color: '#ffffff', fontWeight: '200', textAlign: 'center',
-};
+		color: '#ffffff', fontWeight: '200', textAlign: 'center',
+	},
+	buttonWidth = 150,
+	buttonRadius = 3;
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+
 	},
 	headingContainer: {
 		height: 650, alignItems: 'center', justifyContent: 'flex-end',
-		backgroundImage: `url(${require('./nebula.jpg')})`,
+		backgroundImage: `url(${require('./nebular.jpg')})`,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
@@ -84,16 +87,17 @@ const styles = StyleSheet.create({
 	},
 	largeHeadingText: {
 		...headingTextStyles,
-		fontSize: 36, fontWeight: '700',
+		fontSize: 48, fontWeight: '700',
 		marginTop: 10, marginBottom: 15,
 	},
 	commandsContainer: {
 		flexDirection: 'row',
-		marginTop: 32,
+		marginTop: 50,
 	},
 	buttonWrapper: {
-		backgroundColor: colors.main, borderRadius: 2,
-		width: 180, marginHorizontal: 8,
+		backgroundColor: colors.main,
+		width: buttonWidth, marginHorizontal: 8,
+		borderRadius: buttonRadius,
 	},
 	buttonInner: {
 		height: 45,
@@ -107,8 +111,8 @@ const styles = StyleSheet.create({
 		textAlign: 'center', marginTop: 3,
 	},
 	transparentButtonWrapper: {
-		backgroundColor: 'rgba(255, 255, 255, 0.2)',
+		backgroundColor: 'rgba(0, 0, 0, 0.3)',
 		borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.6)', borderRadius: 2,
-		width: 180, marginHorizontal: 8,
+		width: buttonWidth, marginHorizontal: 8,
 	},
 });
