@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
 import { isString, isObject } from 'lodash';
 
-import { sizes, colors, iStyles } from '../utils';
+import { sizes, colors, iStyles, baseStyles } from '../utils';
 import { Style, Element, } from '../typeDefinition';
 
 type Props = {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 42,
 	},
 	titleText: {
-		fontSize: 20, textAlign: 'center', fontWeight: '200',
-		marginBottom: 30,
+		...baseStyles.text, fontSize: 25, fontWeight: '200',
+		textAlign: 'center', marginBottom: 30,
 	},
 });

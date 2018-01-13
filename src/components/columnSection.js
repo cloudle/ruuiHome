@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, } from 'react-native';
 import Icon from './vector-icons/EvilIcons';
 
 import PageSection from './pageSection';
+import { baseStyles } from '../utils';
 import { Style, Element } from '../typeDefinition';
 
 type Props = {
@@ -75,10 +76,10 @@ const styles = StyleSheet.create({
 		fontSize: 50, textAlign: 'center', marginBottom: 18,
 	},
 	columnHeadingText: {
-		textAlign: 'center', fontSize: 18, fontWeight: '600',
-		marginBottom: 30,
+		...baseStyles.text, fontSize: 18, fontWeight: '600',
+		textAlign: 'center', marginBottom: 30,
 	},
 	columnDescriptionText: {
-		textAlign: 'center', fontSize: 13,
+		...baseStyles.text, textAlign: 'center', fontSize: 14,
 	},
 });

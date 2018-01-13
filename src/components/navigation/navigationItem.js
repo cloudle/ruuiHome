@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
 
-import { sizes, colors } from '../../utils';
+import { sizes, colors, baseStyles } from '../../utils';
 import { Style, Element, } from '../../typeDefinition';
 
 type Props = {
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
 		marginHorizontal: 10,
 	},
 	titleText: {
-		fontSize: 12, color: '#dadeeb',
+		...baseStyles.text, fontSize: 12, color: '#dadeeb',
 	},
 });

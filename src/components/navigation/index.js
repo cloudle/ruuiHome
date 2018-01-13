@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 import EntypoIcon from '../vector-icons/Entypo';
 import GithubIcon from './githubIcon';
 import NavigationItem from './navigationItem';
-import { sizes, colors, siteConfigs } from '../../utils';
+import { sizes, colors, siteConfigs, iStyles, baseStyles } from '../../utils';
 import { Style } from '../../typeDefinition';
 
 type Props = {
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
 		marginRight: 12,
 	},
 	repoNameText: {
-		fontSize: 14, fontWeight: '500',
-		color: '#ffffff',
+		...baseStyles.text,
+		fontSize: 14, fontWeight: '500', color: '#ffffff',
 	},
 	navigationContainer: {
 		flex: 1, flexDirection: 'row',

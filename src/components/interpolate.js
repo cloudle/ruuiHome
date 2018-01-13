@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
 import { isObject, isString, isNumber } from 'lodash';
 
+import { baseStyles } from '../utils';
 import { Style, Element } from '../typeDefinition';
 
 const mustacheRegex = /{{\s*[\w\.]+\s*}}/g;
@@ -99,9 +100,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	text: {
-		fontSize: 13, color: '#bebebe',
+		...baseStyles.text, fontSize: 13, color: '#bebebe',
 	},
 	link: {
-		fontSize: 13, color: 'rgba(74,139,252,.7)',
+		...baseStyles.text, fontSize: 13, color: 'rgba(74,139,252,.7)',
 	},
 });

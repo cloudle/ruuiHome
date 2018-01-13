@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, } from 'react-native';
 
 import PageSection from '../pageSection';
 import Interpolate from '../interpolate';
-import { siteConfigs, } from '../../utils';
+import { siteConfigs, baseStyles } from '../../utils';
 
 type Props = {
 
@@ -38,8 +38,5 @@ const styles = StyleSheet.create({
 	},
 	licenseContainer: {
 		flex: 1, alignItems: 'flex-end',
-	},
-	footerText: {
-		fontSize: 12, color: '#bebebe', fontWeight: '200',
 	},
 });

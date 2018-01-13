@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, } from 'react-native';
-import { connect, Button } from 'react-universal-ui';
+import { connect, Button, } from 'react-universal-ui';
 
 import Layout from '../../components/layout';
 import PageSection from '../../components/pageSection';
 import ColumnSection from '../../components/columnSection';
 import particleJs from '../../components/particle';
-import { sizes, colors, siteConfigs } from '../../utils';
+import { sizes, colors, siteConfigs, baseStyles } from '../../utils';
 
 type Props = {
 	dispatch?: Function,
@@ -67,7 +67,7 @@ export default class HomeScene extends Component {
 }
 
 const headingTextStyles = {
-		color: '#ffffff', fontWeight: '200', textAlign: 'center',
+		...baseStyles.text,	color: '#ffffff', fontWeight: '200', textAlign: 'center',
 	},
 	buttonWidth = 150,
 	buttonRadius = 3;
@@ -95,8 +95,7 @@ const styles = StyleSheet.create({
 		lineHeight: 22, maxWidth: 320,
 	},
 	largeHeadingText: {
-		...headingTextStyles,
-		fontSize: 48, fontWeight: '700',
+		...headingTextStyles, fontSize: 48, fontWeight: '700',
 		marginTop: 10, marginBottom: 15,
 	},
 	commandsContainer: {
@@ -112,11 +111,11 @@ const styles = StyleSheet.create({
 		height: 45,
 	},
 	buttonText: {
+		...baseStyles.text, textAlign: 'center',
 		fontSize: 12, color: '#ffffff', fontWeight: '500',
-		textAlign: 'center',
 	},
 	buttonSmallText: {
-		fontSize: 10, color: '#ffffff',
+		...baseStyles.text, fontSize: 10, color: '#ffffff',
 		textAlign: 'center', marginTop: 3,
 	},
 	transparentButtonWrapper: {
