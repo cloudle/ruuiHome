@@ -3,7 +3,8 @@ import { StyleSheet, View, Text, Image, } from 'react-native';
 import { connect, Button } from 'react-universal-ui';
 
 import Layout from '../../components/layout';
-import ColumnSection from './columnSection';
+import PageSection from '../../components/pageSection';
+import ColumnSection from '../../components/columnSection';
 import particleJs from '../../components/particle';
 import { sizes, colors, siteConfigs } from '../../utils';
 
@@ -21,7 +22,7 @@ export default class HomeScene extends Component {
 	props: Props;
 
 	componentDidMount() {
-		setTimeout(() => particleJs('particle-header', require('./particles-light.json')), 1000);
+		particleJs('particle-header', require('./particles-light.json'));
 	}
 
 	render() {
@@ -50,9 +51,17 @@ export default class HomeScene extends Component {
 				</View>
 			</View>
 
-			<View style={{ height: 200 }}/>
-			<ColumnSection configs={homeConfigs.whySection}/>
-			<View style={{ height: 1000 }}/>
+			<ColumnSection
+				wrapperStyle={{ borderTopWidth: 0, }}
+				configs={homeConfigs.whySection}/>
+
+			<ColumnSection
+				wrapperStyle={styles.darkSectionWrapper}
+				configs={{ dark: true, title: 'DARK SECTION' }}/>
+
+			<ColumnSection
+				wrapperStyle={styles.redSectionWrapper}
+				configs={{ dark: true, title: 'DARK SECTION' }}/>
 		</Layout>;
 	}
 }
@@ -69,7 +78,7 @@ const styles = StyleSheet.create({
 	},
 	headingContainer: {
 		height: 650, alignItems: 'center', justifyContent: 'flex-end',
-		backgroundImage: `url(${require('./nebular.jpg')})`,
+		backgroundImage: "url('img/7935.jpg')",
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
@@ -115,4 +124,20 @@ const styles = StyleSheet.create({
 		borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.6)', borderRadius: 2,
 		width: buttonWidth, marginHorizontal: 8,
 	},
+	darkSectionWrapper: {
+		backgroundColor: '#222736',
+		backgroundImage: "url('img/bg-gallary.svg')",
+		backgroundSize: '70%',
+		backgroundPosition: 'top center',
+		backgroundRepeat: 'no-repeat',
+		height: 400,
+	},
+	redSectionWrapper: {
+		backgroundColor: '#e04e4b',
+		backgroundImage: "url('img/bg-earth.png')",
+		backgroundSize: 'contain',
+		backgroundPosition: 'center',
+		backgroundRepeat: 'no-repeat',
+		height: 400, marginTop: 200,
+	}
 });

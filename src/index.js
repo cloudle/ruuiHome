@@ -4,9 +4,8 @@ import { utils, connect, ContextProvider, Modal, Snackbar, Dropdown, } from 'rea
 import { Switch, Route, StaticRouter } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 
-import Layout from './components/layout';
 import HomeScene from './scenes/home';
-import DocumentScene from './scenes/docs';
+// import DocumentScene from './scenes/docs';
 import TutorialScene from './scenes/tutorials';
 import MeetupScene from './scenes/meetups';
 import NotFoundScene from './scenes/notFound';
@@ -50,9 +49,9 @@ class App extends Component {
 			<Router {...routerProps}>
 				<Switch>
 					<Route exact path="/" component={HomeScene}/>
-					<Route exact path="/docs" component={DocumentScene}/>
-					<Route exact path="/tutorials" component={TutorialScene}/>
-					<Route exact path="/meetups" component={MeetupScene}/>
+					{/*<Route exact path="/docs" component={DocumentScene}/>*/}
+					<Route path="/tutorials" component={TutorialScene}/>
+					<Route path="/meetups" component={MeetupScene}/>
 					<Route component={NotFoundScene}/>
 				</Switch>
 			</Router>

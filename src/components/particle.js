@@ -1,14 +1,6 @@
-/* -----------------------------------------------
-/* Author : Vincent Garreau  - vincentgarreau.com
-/* MIT license: http://opensource.org/licenses/MIT
-/* Demo / Generator : vincentgarreau.com/particles.js
-/* GitHub : github.com/VincentGarreau/particles.js
-/* How to use? : Check the GitHub README
-/* v2.0.0
-/* ----------------------------------------------- */
+import { utils } from 'react-universal-ui';
 
 var pJS = function(tag_id, params){
-
 	var canvas_el = document.querySelector('#'+tag_id+' > .particles-js-canvas-el');
 
 	/* particles.js variables with default values */
@@ -156,7 +148,7 @@ var pJS = function(tag_id, params){
 
 	pJS.fn.retinaInit = function(){
 
-		if(pJS.retina_detect && window.devicePixelRatio > 1){
+		if(!utils.isServer && pJS.retina_detect && window.devicePixelRatio > 1){
 			pJS.canvas.pxratio = window.devicePixelRatio;
 			pJS.tmp.retina = true;
 		}
@@ -193,7 +185,7 @@ var pJS = function(tag_id, params){
 		pJS.canvas.el.width = pJS.canvas.w;
 		pJS.canvas.el.height = pJS.canvas.h;
 
-		if(pJS && pJS.interactivity.events.resize){
+		if(!utils.isServer && pJS && pJS.interactivity.events.resize){
 
 			window.addEventListener('resize', function(){
 
@@ -1062,7 +1054,7 @@ var pJS = function(tag_id, params){
 	pJS.fn.vendors.eventsListeners = function(){
 
 		/* events target element */
-		if(pJS.interactivity.detect_on == 'window'){
+		if(!utils.isServer && pJS.interactivity.detect_on == 'window'){
 			pJS.interactivity.el = window;
 		}else{
 			pJS.interactivity.el = pJS.canvas.el;
@@ -1075,7 +1067,7 @@ var pJS = function(tag_id, params){
 			/* el on mousemove */
 			pJS.interactivity.el.addEventListener('mousemove', function(e){
 
-				if(pJS.interactivity.el == window){
+				if(!utils.isServer && pJS.interactivity.el == window){
 					var pos_x = e.clientX,
 						pos_y = e.clientY;
 				}
@@ -1217,7 +1209,7 @@ var pJS = function(tag_id, params){
 
 		/* prepare to create img with colored svg */
 		var svg = new Blob([coloredSvgXml], {type: 'image/svg+xml;charset=utf-8'}),
-			DOMURL = window.URL || window.webkitURL || window,
+			DOMURL = global.URL || global.webkitURL || global,
 			url = DOMURL.createObjectURL(svg);
 
 		/* create particle img obj */
@@ -1263,7 +1255,9 @@ var pJS = function(tag_id, params){
 	};
 
 	pJS.fn.vendors.exportImg = function(){
-		window.open(pJS.canvas.el.toDataURL('image/png'), '_blank');
+		if (!utils.isServer) {
+			window.open(pJS.canvas.el.toDataURL('image/png'), '_blank');
+		}
 	};
 
 
@@ -1426,25 +1420,27 @@ Object.deepExtend = function(destination, source) {
 	return destination;
 };
 
-window.requestAnimFrame = (function(){
-	return  window.requestAnimationFrame ||
-		window.webkitRequestAnimationFrame ||
-		window.mozRequestAnimationFrame    ||
-		window.oRequestAnimationFrame      ||
-		window.msRequestAnimationFrame     ||
-		function(callback){
-			window.setTimeout(callback, 1000 / 60);
-		};
-})();
+if (!utils.isServer) {
+	window.requestAnimFrame = (function(){
+		return  window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame    ||
+			window.oRequestAnimationFrame      ||
+			window.msRequestAnimationFrame     ||
+			function(callback){
+				window.setTimeout(callback, 1000 / 60);
+			};
+	})();
 
-window.cancelRequestAnimFrame = ( function() {
-	return window.cancelAnimationFrame         ||
-		window.webkitCancelRequestAnimationFrame ||
-		window.mozCancelRequestAnimationFrame    ||
-		window.oCancelRequestAnimationFrame      ||
-		window.msCancelRequestAnimationFrame     ||
-		clearTimeout
-} )();
+	window.cancelRequestAnimFrame = ( function() {
+		return window.cancelAnimationFrame         ||
+			window.webkitCancelRequestAnimationFrame ||
+			window.mozCancelRequestAnimationFrame    ||
+			window.oCancelRequestAnimationFrame      ||
+			window.msCancelRequestAnimationFrame     ||
+			clearTimeout
+	} )();
+}
 
 function hexToRgb(hex){
 	// By Tim Down - http://stackoverflow.com/a/5624139/3493650

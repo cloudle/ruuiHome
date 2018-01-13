@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 		top: 0, left: 0, right: 0,
 		flexDirection: 'row',
 		height: sizes.navigationHeight,
-		backgroundColor: '#2b2e39',
+		backgroundColor: '#202434',
 	},
 	logoContainer: {
 		flexDirection: 'row', alignItems: 'center',

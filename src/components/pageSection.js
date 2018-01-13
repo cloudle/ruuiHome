@@ -10,6 +10,7 @@ type Props = {
 	innerStyle?: Style,
 	children?: Element,
 	title?: String | Element,
+	dark?: Boolean,
 };
 
 export default class PageSection extends Component {
@@ -28,7 +29,10 @@ export default class PageSection extends Component {
 
 	renderTitle = () => {
 		if (isString(this.props.title)) {
-			return <Text className="page-section-title" style={styles.titleText}>
+			const titleStyle = this.props.dark ? { color: '#ffffff', } : {},
+				textClass = this.props.dark ? 'dark page-section-title' : 'page-section-title';
+
+			return <Text className={textClass} style={[styles.titleText, titleStyle]}>
 				{this.props.title}
 			</Text>;
 		} else if (isObject(this.props.title)) {

@@ -1,6 +1,7 @@
 {
 	"siteName": "UNIVERSAL UI",
-	"ruuiVersion": "0.0.71",
+	"libraryName": "React Universal UI",
+	"ruuiVersion": "0.0.73",
 	"menus": [
 		{
 			"title": "VIDEO TUTORIALS",
@@ -13,31 +14,52 @@
 			"uri": "meetups"
 		}
 	],
+	"footer": {
+		"copyright": "Develop from 2016 - Present by {{author}} and great support from {{company}}",
+		"license": "{{library}} is under {{licenseType}}, do anything you want!",
+		"library": "RUUI",
+		"licenseType": {
+			"type": "link",
+			"text": "MIT",
+			"link": "https://github.com/cloudle"
+		},
+		"author": {
+			"type": "link",
+			"text": "Cloud Le",
+			"link": "https://github.com/cloudle"
+		},
+		"company": {
+			"type": "link",
+			"text": "Rooxim INC",
+			"link": "https://www.rooxim.com"
+		}
+	},
 	"home": {
 		"heading": {
 			"heading": "WRITE UI ONCE (JAVASCRIPT)",
 			"largeHeading": "RUN EVERYWHERE!",
 			"description": "on Web, Node (server side rendering), Native Mobile, Windows Universal, Mac, Linux..",
-			"install": "INSTALL NOW",
+			"install": "TRY IT NOW",
 			"version": "Version",
 			"tutorial": "TUTORIAL"
 		},
 		"": [],
 		"whySection": {
 			"title": "WHY UNIVERSAL UI?",
+			"wowDelay": 0.5,
 			"columns": [
 				{
-					"icon": "share-apple",
-					"heading": "Heading 1",
-					"description": "Accomplish in 10 lines what would otherwise take 1000, thanks to an integrated JavaScript stack that extends from the database to the end user's screen."
+					"icon": "trophy",
+					"heading": "Write once, run everywhere!",
+					"description": "Build your cross-platform application that run almost everywhere with one single javascript code-base.\n(Browser, Node.js server-side-rendering, iOs, Android, Windows Universal...)"
 				}, {
 					"icon": "camera",
-					"heading": "Heading 2",
-					"description": "Accomplish in 10 lines what would otherwise take 1000, thanks to an integrated JavaScript stack that extends from the database to the end user's screen."
+					"heading": "Native and performant",
+					"description": "Unlike Cordova, Universal UI use React Native on iOs and Android build.. which close to Native Mobile application, it is much faster and easier to integrate with Native Mobile modules."
 				}, {
 					"icon": "trophy",
-					"heading": "Heading 3",
-					"description": "Accomplish in 10 lines what would otherwise take 1000, thanks to an integrated JavaScript stack that extends from the database to the end user's screen."
+					"heading": "Universal components",
+					"description": "Universal UI give you all essential structure/components you need for Mobile or Web application, you don't have to waste time on picking from tons of library out there and make them work together."
 				}
 			]
 		}

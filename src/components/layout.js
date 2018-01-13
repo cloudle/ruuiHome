@@ -4,6 +4,7 @@ import { enterAnimation } from 'react-universal-ui';
 import { debounce } from 'lodash';
 
 import Navigation from './navigation';
+import Footer from './footer';
 import { colors, sizes, } from '../utils';
 import type { Element, Style } from '../typeDefinition';
 
@@ -29,13 +30,14 @@ export default class ApplicationLayout extends Component {
 			wrapperStyle = {
 				marginTop: this.props.home ? 0 : sizes.navigationHeight,
 			},
-			animatedStyle = { opacity, };
+			animatedStyle = { opacity, minHeight: 1000, };
 
 		return <View style={[styles.container, wrapperStyle, this.props.style]}>
 			<Navigation home={this.props.home}/>
 			<Animated.View style={animatedStyle}>
 				{this.props.children}
 			</Animated.View>
+			<Footer/>
 		</View>;
 	}
 }

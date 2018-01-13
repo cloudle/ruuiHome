@@ -7,6 +7,9 @@ const morgan = require('morgan');
 
 moduleAlias.addAlias('react-native', 'react-native-web');
 
+document = { createElement: () => {}, };
+// window = { emulate: true, addEventListener: () => {}, };
+
 const watcher = chokidar.watch('./src', { ignoreInitial: true });
 
 watcher.on('all', (event, filename) => {
@@ -19,7 +22,7 @@ const PORT = 3005,
 	server = express();
 
 server.set('view engine', 'ejs');
-server.use(express.static('web'));
+server.use(express.static('static'));
 server.use(morgan('dev'));
 
 server.use((req, res, next) => {
