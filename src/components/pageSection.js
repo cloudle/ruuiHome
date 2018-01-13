@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 42,
 	},
 	titleText: {
-		...baseStyles.text, fontSize: 25, fontWeight: '200',
+		...baseStyles.text, fontSize: 25, fontWeight: '400',
 		textAlign: 'center', marginBottom: 30,
 	},
 });

@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
 		marginRight: 12,
 	},
 	repoNameText: {
-		...baseStyles.text,
-		fontSize: 14, fontWeight: '500', color: '#ffffff',
+		...baseStyles.text, fontSize: 18, fontWeight: '700', color: '#ffffff',
+		letterSpacing: -1,
 	},
 	navigationContainer: {
 		flex: 1, flexDirection: 'row',

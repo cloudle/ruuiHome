@@ -67,7 +67,7 @@ export default class HomeScene extends Component {
 }
 
 const headingTextStyles = {
-		...baseStyles.text,	color: '#ffffff', fontWeight: '200', textAlign: 'center',
+		...baseStyles.text,	color: '#ffffff', fontWeight: '300', textAlign: 'center',
 	},
 	buttonWidth = 150,
 	buttonRadius = 3;
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
 		...headingTextStyles, fontSize: 22,
 	},
 	smallHeadingText: {
-		...headingTextStyles, fontSize: 14, color: '#b9c0d6',
-		lineHeight: 22, maxWidth: 320,
+		...headingTextStyles, fontSize: 14, color: '#b9c0d6', fontWeight: '400',
+		maxWidth: 320,
 	},
 	largeHeadingText: {
 		...headingTextStyles, fontSize: 48, fontWeight: '700',
@@ -112,11 +112,10 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		...baseStyles.text, textAlign: 'center',
-		fontSize: 12, color: '#ffffff', fontWeight: '500',
+		fontSize: 12, color: '#ffffff', fontWeight: '700',
 	},
 	buttonSmallText: {
-		...baseStyles.text, fontSize: 10, color: '#ffffff',
-		textAlign: 'center', marginTop: 3,
+		...baseStyles.text, fontSize: 10, fontWeight: '600', color: '#ffffff', textAlign: 'center',
 	},
 	transparentButtonWrapper: {
 		backgroundColor: 'rgba(0, 0, 0, 0.3)',
