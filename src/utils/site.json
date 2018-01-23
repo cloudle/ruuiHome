@@ -65,6 +65,91 @@
 			]
 		}
 	},
+	"docs": {
+		"menuItems": [{
+			"title": "HOME",
+			"url": "home"
+		}, {
+			"title": "INTRO",
+			"url": "intro",
+			"childItems": [{
+				"title": "Installation",
+				"url": "installation"
+			}, {
+				"title": "Tutorial",
+				"url": "tutorial"
+			}, {
+				"title": "First Application",
+				"url": "fist-application"
+			}]
+		}, {
+			"title": "COMPONENTS",
+			"url": "components",
+			"childItems": [{
+				"title": "Buttons",
+				"url": "buttons"
+			}, {
+				"title": "Text Input",
+				"url": "text-input"
+			}, {
+				"title": "NativeNavigation",
+				"url": "native-navigation"
+			}, {
+				"title": "Modals",
+				"url": "modals"
+			}, {
+				"title": "Dropdown",
+				"url": "dropdown"
+			}, {
+				"title": "Select",
+				"url": "select"
+			}, {
+				"title": "Picker",
+				"url": "picker"
+			}, {
+				"title": "TabView",
+				"url": "tab-view"
+			}, {
+				"title": "Tooltip",
+				"url": "tooltip"
+			}, {
+				"title": "Snackbar",
+				"url": "snackbar"
+			}, {
+				"title": "LoadingMask",
+				"url": "loading-mask"
+			}, {
+				"title": "Slider",
+				"url": "slider"
+			}, {
+				"title": "ConnectionMask",
+				"url": "connection-mask"
+			}, {
+				"title": "RadioIcon",
+				"url": "radio-icon"
+			}]
+		}, {
+			"title": "DECORATORS",
+			"url": "decorators",
+			"childItems": [{
+				"title": "@universalScene",
+				"url": "universal-scene"
+			}, {
+				"title": "@enterAnimation",
+				"url": "enter-animation"
+			}]
+		}, {
+			"title": "UNIVERSAL ROUTER",
+			"url": "universal-router"
+		}, {
+			"title": "UTILS",
+			"url": "utils",
+			"childItems": [{
+				"title": "ContextProvider",
+				"url": "context-provider"
+			}]
+		}]
+	},
 	"introSeries": {
 		"title": "VIDEO TUTORIALS",
 		"series": [

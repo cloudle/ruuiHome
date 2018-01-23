@@ -16,6 +16,7 @@ export const colors = {
 export const sizes = {
 	navigationHeight: 60,
 	sideBarWidth: 256,
+	emulatorWidth: 350,
 	smallScreen: 1024,
 	maxContentWidth: 940,
 };

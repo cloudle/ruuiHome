@@ -3,14 +3,15 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { utils } from 'react-universal-ui';
 import Markdown from 'react-markdown';
 
-import Layout from '../../components/layout';
+import Layout from './layout';
+import DocNavigator from './navigator';
 import CodeBlock from '../../components/markdownRenderers/codeBlock';
 import Heading from '../../components/markdownRenderers/heading';
 import List from '../../components/markdownRenderers/list';
 import AnimatedNumbers from '../../components/animatedNumbers';
 import AnimatedStepNumbers from '../../components/animatedStepNumbers';
 import { universalScene } from '../../decorators';
-import { apiFetch } from '../../utils';
+import { apiFetch, sizes } from '../../utils';
 
 type Props = {
 	data?: any,
@@ -46,17 +47,12 @@ export default class DocumentScene extends Component {
 	render() {
 		const	renderers = { ...Markdown.renderers, CodeBlock, Heading, List };
 
-		return <Layout style={styles.container}>
-			<View
-				onKeyUp={() => console.log('KeyUp!')}
-				style={{ height: 500, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
-				<TextInput style={{ backgroundColor: 'red', height: 50, }}/>
-				{/*<AnimatedStepNumbers*/}
-					{/*animationSpeed={1000}*/}
-					{/*style={{ backgroundColor: '#343434', borderRadius: 5, paddingHorizontal: 16, }}*/}
-					{/*textStyle={{ fontSize: 100, color: '#ffffff', fontWeight: '300' }}*/}
-					{/*value={this.state.number}/>*/}
-			</View>
+		return <Layout
+			style={styles.container}
+			emulator={<View
+				style={{ flex: 1, marginTop: 24, alignItems: 'center', justifyContent: 'center' }}>
+				<Text style={{ color: '#ffffff', }}>Hey!</Text>
+			</View>}>
 			<Markdown source={this.props.data} renderers={renderers}/>
 		</Layout>;
 	}
