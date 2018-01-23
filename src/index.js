@@ -4,14 +4,9 @@ import { utils, connect, ContextProvider, Modal, Snackbar, Dropdown, } from 'rea
 import { Switch, Route, StaticRouter } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 
-import HomeScene from './scenes/home';
-// import DocumentScene from './scenes/docs';
-import TutorialScene from './scenes/tutorials';
-import MeetupScene from './scenes/meetups';
-import NotFoundScene from './scenes/notFound';
-
 import { store } from './store';
 import { history } from './store/reducers';
+import { routes } from './router';
 import * as appActions from './store/action/app';
 
 type Props = {
@@ -31,6 +26,7 @@ class App extends Component {
 	props: Props;
 
 	componentDidMount() {
+		this.onPageScroll();
 		window.addEventListener('scroll', this.onPageScroll);
 	}
 
@@ -48,11 +44,7 @@ class App extends Component {
 		return <View style={styles.container}>
 			<Router {...routerProps}>
 				<Switch>
-					<Route exact path="/" component={HomeScene}/>
-					{/*<Route exact path="/docs" component={DocumentScene}/>*/}
-					<Route path="/tutorials" component={TutorialScene}/>
-					<Route path="/meetups" component={MeetupScene}/>
-					<Route component={NotFoundScene}/>
+					{routes.map((route, i) => <Route key={i} {...route}/>)}
 				</Switch>
 			</Router>
 
