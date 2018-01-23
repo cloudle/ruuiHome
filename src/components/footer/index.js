@@ -4,9 +4,12 @@ import { StyleSheet, View, Text, } from 'react-native';
 import PageSection from '../pageSection';
 import Interpolate from '../interpolate';
 import { siteConfigs, baseStyles } from '../../utils';
+import { Style } from '../../typeDefinition';
 
 type Props = {
-
+	wrapperStyle?: Style,
+	innerStyle?: Style,
+	fullSize?: Boolean,
 };
 
 export default class Footer extends Component {
@@ -15,7 +18,10 @@ export default class Footer extends Component {
 	render() {
 		const footers = siteConfigs.footer || {};
 
-		return <PageSection wrapperStyle={styles.container} innerStyle={styles.innerContainer}>
+		return <PageSection
+			fullSize={this.props.fullSize}
+			wrapperStyle={[styles.container, this.props.wrapperStyle]}
+			innerStyle={[styles.innerContainer, this.props.innerStyle]}>
 			<Interpolate
 				template={footers.copyright} sources={footers}/>
 			<Interpolate
