@@ -28,10 +28,9 @@ export default class WhySection extends Component {
 			ItemComponent = this.props.itemComponent || DefaultItemComponent;
 
 		return <PageSection
-			dark={configs.dark}
+			dark={configs.dark} title={configs.title}
 			wrapperStyle={[styles.container, this.props.wrapperStyle]}
-			innerStyle={[styles.innerContainer, this.props.innerStyle]}
-			title={configs.title}>
+			innerStyle={[styles.innerContainer, this.props.innerStyle]}>
 			{columns.map((column, i) => {
 				return <ItemComponent key={i} instance={column} index={i} wowDelay={wowDelay}/>;
 			})}
@@ -76,10 +75,10 @@ const styles = StyleSheet.create({
 		fontSize: 50, textAlign: 'center', marginBottom: 18,
 	},
 	columnHeadingText: {
-		...baseStyles.text, fontSize: 18, fontWeight: '600',
+		...baseStyles.text, color: 'rgba(0, 0, 0, 0.8)', fontSize: 18,
 		textAlign: 'center', marginBottom: 30,
 	},
 	columnDescriptionText: {
-		...baseStyles.text, textAlign: 'center', fontSize: 14,
+		...baseStyles.text, color: 'rgba(0, 0, 0, 0.5)', fontSize: 15, textAlign: 'center',
 	},
 });

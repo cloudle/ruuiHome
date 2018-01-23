@@ -20,7 +20,7 @@ export default class ApplicationLayout extends Component {
 	props: Props;
 
 	componentDidMount() {
-		new WOW().init();
+		if (global.WOW) new WOW().init();
 	}
 
 	render() {
