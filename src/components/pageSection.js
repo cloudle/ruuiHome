@@ -11,14 +11,17 @@ type Props = {
 	children?: Element,
 	title?: String | Element,
 	dark?: Boolean,
+	fullSize?: Boolean,
 };
 
 export default class PageSection extends Component {
 	props: Props;
 
 	render() {
+		const contentContainerStyle = this.props.fullSize ? {} : iStyles.contentContainer;
+
 		return <View style={[styles.container, this.props.wrapperStyle]}>
-			<View style={iStyles.contentContainer}>
+			<View style={contentContainerStyle}>
 				{this.renderTitle()}
 				<View style={this.props.innerStyle}>
 					{this.props.children}
