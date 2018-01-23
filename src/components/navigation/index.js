@@ -13,6 +13,7 @@ type Props = {
 	dispatch?: Function,
 	style?: Style,
 	home?: Boolean,
+	logoWidth?: Number,
 	pageScrollOffset?: {
 		x: Number,
 		y: Number,
@@ -39,10 +40,11 @@ export default class NavigationBar extends Component {
 	}
 
 	renderLogo = (transparent) => {
-		const containerStyle = transparent ? {} : { backgroundColor: colors.main, };
+		const transparentStyle = transparent ? {} : { backgroundColor: colors.main, },
+			widthStyle = this.props.logoWidth ? { width: this.props.logoWidth } : {};
 
 		return <TouchableOpacity
-			style={[styles.logoContainer, containerStyle]}
+			style={[styles.logoContainer, transparentStyle, widthStyle]}
 			onPress={() => { this.props.dispatch(push('/')); }}>
 			<EntypoIcon name="circular-graph" style={styles.ruuiIcon}/>
 			<Text style={styles.repoNameText}>{siteConfigs.siteName}</Text>
