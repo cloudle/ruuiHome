@@ -7,7 +7,7 @@
 	<meta name="msapplication-tap-highlight" content="no">
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="animate.min.css">
+	<link rel="stylesheet" type="text/css" href="/animate.min.css">
 	<style>
 		:focus { outline: none; }
 		body {
@@ -42,29 +42,54 @@
 			color: #de4f4f;
 		}
 
+		.chapter-player-row:before {
+			content: ' '; display: block; box-sizing: border-box;
+			position: absolute; left: -37px; top: 9px;
+			background-color: #ffffff;
+			width: 12px; height: 12px;
+			border-radius: 50%;
+			border: solid 2px rgba(0, 0, 0, 0.3);
+		}
+
+		.chapter-player-row:hover:before {
+			border-color: #de4f4f;
+		}
+
+		.chapter-player-row:hover .heading-text {
+			color: #de4f4f;
+		}
+
 		@font-face {
 			font-family: Material Icons;
-			src: url(MaterialIcons.ttf) format('truetype');
+			src: url('/MaterialIcons.ttf') format('truetype');
 		}
 
 		@font-face {
 			font-family: Entypo;
-			src: url(Entypo.ttf) format('truetype');
+			src: url('/Entypo.ttf') format('truetype');
 		}
 
 		@font-face {
 			font-family: EvilIcons;
-			src: url(EvilIcons.ttf) format('truetype');
+			src: url('/EvilIcons.ttf') format('truetype');
 		}
-
-		<% if (typeof initialStyles !== 'undefined') { %><%-initialStyles%><% } %>
 	</style>
+  <% if (typeof initialStyles !== 'undefined') { %><%-initialStyles%><% } %>
 </head>
 
 <body>
 	<div id="root"><% if (typeof initialHtml !== 'undefined') { %><%-initialHtml%><% } %></div>
 
-	<script src="wow.min.js"></script>
+	<script src="/wow.min.js"></script>
+
+  <% if (typeof initialProps !== 'undefined') { %>
+		<script id="initialPropsInjector">
+			ssrInitialProps = <%-JSON.stringify(initialProps)%>
+			var elem = document.getElementById("initialPropsInjector");
+			elem.parentNode.removeChild(elem);
+		</script>
+  <% } %>
+
   <%if (typeof htmlWebpackPlugin !== 'undefined' && !htmlWebpackPlugin.options.isProduction) { %>
 		<script src="/vendor.bundle.js"></script>
   <% } %>
