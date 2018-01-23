@@ -32,9 +32,9 @@ export default class ApplicationLayout extends Component {
 			},
 			animatedStyle = { opacity, minHeight: 1000, };
 
-		return <View style={[styles.container, wrapperStyle, this.props.style]}>
+		return <View style={[styles.container, wrapperStyle]}>
 			<Navigation home={this.props.home}/>
-			<Animated.View style={animatedStyle}>
+			<Animated.View style={[animatedStyle, this.props.style]}>
 				{this.props.children}
 			</Animated.View>
 			<Footer/>
