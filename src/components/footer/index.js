@@ -28,7 +28,7 @@ export default class Footer extends Component {
 const styles = StyleSheet.create({
 	container: {
 		paddingVertical: 20,
-		backgroundImage: "url('img/bg-footer.svg')",
+		backgroundImage: "url('/img/bg-footer.svg')",
 		backgroundSize: '100%',
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',

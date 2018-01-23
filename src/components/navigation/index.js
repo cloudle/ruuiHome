@@ -4,7 +4,7 @@ import { connect, Button } from 'react-universal-ui';
 import { push } from 'react-router-redux';
 
 import EntypoIcon from '../vector-icons/Entypo';
-import GithubIcon from './githubIcon';
+import { GithubIcon, } from '../svgs';
 import NavigationItem from './navigationItem';
 import { sizes, colors, siteConfigs, iStyles, baseStyles } from '../../utils';
 import { Style } from '../../typeDefinition';
@@ -60,7 +60,7 @@ export default class NavigationBar extends Component {
 			})}
 			<TouchableOpacity
 				style={styles.githubIconContainer}
-				onPress={() => { window.open('https://github.com/cloudle/ruui'); }}>
+				onPress={() => { window.open(siteConfigs.repoUrl); }}>
 				<GithubIcon/>
 			</TouchableOpacity>
 		</View>;
