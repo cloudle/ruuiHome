@@ -2,16 +2,17 @@
 	"siteName": "UNIVERSAL UI",
 	"libraryName": "React Universal UI",
 	"ruuiVersion": "0.0.73",
+	"repoUrl": "https://github.com/cloudle/ruui",
 	"menus": [
 		{
 			"title": "VIDEO TUTORIALS",
-			"uri": "tutorials"
+			"uri": "/tutorials"
 		}, {
 			"title": "DOCS",
-			"uri": "docs"
+			"uri": "/docs"
 		}, {
 			"title": "MEETUPS",
-			"uri": "meetups"
+			"uri": "/meetups"
 		}
 	],
 	"footer": {
@@ -41,7 +42,7 @@
 			"description": "on Web, Node (server side rendering), Native Mobile, Windows Universal, Mac, Linux..",
 			"install": "TRY IT NOW",
 			"version": "Version",
-			"tutorial": "TUTORIAL"
+			"tutorial": "QUICK START"
 		},
 		"": [],
 		"whySection": {
@@ -63,5 +64,85 @@
 				}
 			]
 		}
+	},
+	"introSeries": {
+		"title": "VIDEO TUTORIALS",
+		"series": [
+			{
+				"id": "introductionSeries",
+				"title": "Universal UI Fundamentals",
+				"length": 42,
+				"description": "In the first chapter, you’ll learn about the core concepts of Universal UI. ",
+				"chapters": [{
+					"title": "Introduction",
+					"length": 5,
+					"url": "#"
+				}, {
+					"title": "RUUI Boilerplate",
+					"length": 10,
+					"url": "#"
+				}, {
+					"title": "Hello world!",
+					"length": 3,
+					"url": "#"
+				}, {
+					"title": "Flex layout",
+					"length": 12,
+					"url": "#"
+				}]
+			},
+			{
+				"id": "advancedSeries",
+				"title": "Advanced Universal UI (optional)",
+				"description": "Read this chapter to get a broader understanding of the GraphQL ecosystem.",
+				"chapters": [{
+					"title": "Understanding Redux",
+					"length": 5,
+					"url": "#"
+				}, {
+					"title": "Button and Input component",
+					"length": 5,
+					"url": "#"
+				}, {
+					"title": "Modal, Dropdown and ContextMenu..",
+					"length": 5,
+					"url": "#"
+				}, {
+					"title": "Navigation CardStack",
+					"length": 5,
+					"url": "#"
+				}, {
+					"title": "Universal routing (Browser and Native)",
+					"length": 5,
+					"url": "#"
+				}]
+			}
+		]
+	},
+	"advancedSeries": {
+		"dark": true,
+		"series": [
+			{
+				"id": "introductionSeries",
+				"title": "Universal UI Fundamentals",
+				"length": 42,
+				"description": "In the first chapter, you’ll learn about the core concepts of Universal UI. ",
+				"chapters": [{
+					"title": "Introduction",
+					"length": 5,
+					"url": "#"
+				}]
+			},
+			{
+				"id": "advancedSeries",
+				"title": "Advanced Universal UI (optional)",
+				"description": "Read this chapter to get a broader understanding of the GraphQL ecosystem.",
+				"chapters": [{
+					"title": "Understanding Redux",
+					"length": 5,
+					"url": "#"
+				}]
+			}
+		]
 	}
 }

@@ -5,6 +5,8 @@ import { connect, Button, } from 'react-universal-ui';
 import Layout from '../../components/layout';
 import PageSection from '../../components/pageSection';
 import ColumnSection from '../../components/columnSection';
+import SeriesSection from '../../components/seriesSection';
+import { VideoPlayIcon } from '../../components/svgs';
 import particleJs from '../../components/particle';
 import { sizes, colors, siteConfigs, baseStyles } from '../../utils';
 
@@ -27,7 +29,8 @@ export default class HomeScene extends Component {
 
 	render() {
 		const homeConfigs = siteConfigs.home,
-			headings = homeConfigs.heading;
+			headings = homeConfigs.heading,
+			videoIcon = <VideoPlayIcon color="#ffffff" size={30} opacity={0.4}/>;
 
 		return <Layout home style={styles.container}>
 			<View id="particle-header" style={styles.headingContainer}>
@@ -46,7 +49,8 @@ export default class HomeScene extends Component {
 							wrapperStyle={styles.transparentButtonWrapper}
 							innerStyle={styles.buttonInner}
 							textStyle={styles.buttonText}
-							title={headings.tutorial}/>
+							title={headings.tutorial}
+							icon={videoIcon}/>
 					</View>
 				</View>
 			</View>
@@ -55,13 +59,16 @@ export default class HomeScene extends Component {
 				wrapperStyle={{ borderTopWidth: 0, }}
 				configs={homeConfigs.whySection}/>
 
-			<ColumnSection
+			<SeriesSection
+				configs={siteConfigs.introSeries}/>
+
+			<SeriesSection
 				wrapperStyle={styles.darkSectionWrapper}
-				configs={{ dark: true, title: 'DARK SECTION' }}/>
+				configs={siteConfigs.advancedSeries}/>
 
 			<ColumnSection
 				wrapperStyle={styles.redSectionWrapper}
-				configs={{ dark: true, title: 'DARK SECTION' }}/>
+				configs={{ dark: true, title: 'UPCOMING MEETUPS' }}/>
 		</Layout>;
 	}
 }
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
 	},
 	headingContainer: {
 		height: 650, alignItems: 'center', justifyContent: 'flex-end',
-		backgroundImage: "url('img/7935.jpg')",
+		backgroundImage: "url('/img/7935.jpg')",
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
@@ -124,15 +131,14 @@ const styles = StyleSheet.create({
 	},
 	darkSectionWrapper: {
 		backgroundColor: '#222736',
-		backgroundImage: "url('img/bg-gallary.svg')",
+		backgroundImage: "url('/img/bg-gallary.svg')",
 		backgroundSize: '70%',
 		backgroundPosition: 'top center',
 		backgroundRepeat: 'no-repeat',
-		height: 400,
 	},
 	redSectionWrapper: {
 		backgroundColor: '#e04e4b',
-		backgroundImage: "url('img/bg-earth.png')",
+		backgroundImage: "url('/img/bg-earth.png')",
 		backgroundSize: 'contain',
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
