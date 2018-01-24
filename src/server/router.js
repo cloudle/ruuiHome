@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import { AppRegistry } from 'react-native';
 import { matchPath } from 'react-router';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import { utils } from 'react-universal-ui';
 
 import App from '../';
 import { getMarkdown } from './markdownSource';
@@ -14,30 +15,40 @@ const router = Router();
 AppRegistry.registerComponent('App', () => App);
 
 router.use('/markdown', cors(), bodyParser.json(), (req, res, next) => {
-	const { path } = req.body;
-	getMarkdown(path).then(data => res.json({ data }));
+	const { group, id } = req.body;
+	getMarkdown(group, id).then((data) => {
+		res.json({ data });
+	});
 });
 
 router.use('*', (req, res, next) => {
-	let matchedPattern, matchedRoute;
+	let matchedPattern = {}, matchedRoute;
 
-	routes.some((route) => {
+	for (const route of routes) {
 		const match = matchPath(req.baseUrl, route);
 
 		if (match) {
-			matchedPattern = match;
-			matchedRoute = route;
-			return match;
+			matchedPattern = match; matchedRoute = route;
+			break;
 		}
-	});
+	}
 
-	if (matchedRoute && matchedRoute.component && matchedRoute.component.getInitialProps) {
-		const getInitialProps = matchedRoute.component.getInitialProps;
+	if (matchedRoute && matchedRoute.component) {
+		if (matchedRoute.component.getInitialProps) {
+			const getInitialProps = matchedRoute.component.getInitialProps,
+				initialProps = getInitialProps(matchedPattern, utils.isServer, req) || {};
 
-		getInitialProps(matchedPattern, req).then((initialProps) => {
-			responseApplicationSsr(req, res, next, initialProps);
-		});
-	} else responseApplicationSsr(req, res, next);
+			if (initialProps.then) {
+				initialProps.then((promisedInitialProps) => {
+					responseApplicationSsr(req, res, next, promisedInitialProps);
+				});
+			} else {
+				responseApplicationSsr(req, res, next, initialProps);
+			}
+		} else {
+			responseApplicationSsr(req, res, next);
+		}
+	} else next();
 });
 
 function responseApplicationSsr(req, res, next, initialProps = {}) {
@@ -57,10 +68,6 @@ function responseApplicationSsr(req, res, next, initialProps = {}) {
 		initialHtml,
 		serverSide: true
 	});
-}
-
-function defaultGetInitialProps() {
-	return new Promise(resolve => resolve({}));
 }
 
 module.exports = router;
