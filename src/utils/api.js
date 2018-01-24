@@ -3,7 +3,7 @@ import { utils } from 'react-universal-ui';
 
 export function apiFetch(url, vars = {}) {
 	return new Promise((resolve, reject) => {
-		const fullUrl = utils.isServer ? `http://localhost:3005/${url}` : url,
+		const fullUrl = utils.isServer ? `http://localhost:3005${url}` : url,
 			headers = { Accept: 'application/json', 'Content-Type': 'application/json', };
 
 		fetch(fullUrl, { method: 'POST', headers, body: JSON.stringify(vars), })
