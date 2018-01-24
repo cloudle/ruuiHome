@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Text, } from 'react-native';
+import { connect } from 'react-universal-ui';
+import { push } from 'react-router-redux';
 
 import MenuItem from './menuItem';
 import { sizes, siteConfigs } from '../../utils';
 
 type Props = {
-
+	dispatch?: Function,
 };
+
+@connect(({ app }) => {
+	return {
+
+	};
+})
 
 export default class DocNavigator extends Component {
 	props: Props;
@@ -17,10 +25,14 @@ export default class DocNavigator extends Component {
 
 		return <ScrollView style={styles.container}>
 			{menuItems.map((menu) => {
-				return <MenuItem key={menu.url} {...menu}/>;
+				return <MenuItem key={menu.url} {...menu} onNavigate={this.onNavigate}/>;
 			})}
 		</ScrollView>;
 	}
+
+	onNavigate = (group, id) => {
+		group && id && this.props.dispatch(push(`/docs/${group}/${id}`));
+	};
 }
 
 const styles = StyleSheet.create({

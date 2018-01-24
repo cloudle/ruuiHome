@@ -10,6 +10,7 @@ type Props = {
 		title?: String,
 		url?: String,
 	}>,
+	onNavigate?: Function,
 };
 
 export default class DocMenuItem extends Component {
@@ -27,7 +28,11 @@ export default class DocMenuItem extends Component {
 	renderChildMenu = () => {
 		return <View style={styles.childMenuContainer}>
 			{this.props.childItems.map((menuItem) => {
-				return <TouchableOpacity key={this.props.url + menuItem.url} className="doc-menu-item">
+				return <TouchableOpacity
+					key={this.props.url + menuItem.url}
+					className="doc-menu-item"
+					onPress={() => this.props.onNavigate
+						&& this.props.onNavigate(this.props.url, menuItem.url)}>
 					<Text className="title" style={styles.childTitleText}>{menuItem.title}</Text>
 				</TouchableOpacity>;
 			})}

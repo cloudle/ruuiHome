@@ -8,18 +8,20 @@ import { CoreExample } from '../../emulationExamples';
 import CodeBlock from '../../components/markdownRenderers/codeBlock';
 import Heading from '../../components/markdownRenderers/heading';
 import List from '../../components/markdownRenderers/list';
-import AnimatedNumbers from '../../components/animatedNumbers';
-import AnimatedStepNumbers from '../../components/animatedStepNumbers';
 import { universalScene } from '../../decorators';
 import { apiFetch, sizes } from '../../utils';
 
 type Props = {
 	data?: any,
+	initialProps?: {
+		data?: String,
+	},
 };
 
 @universalScene({
-	getInitialProps: ({ params }) => {
-		return apiFetch('markdown', { path: params.id || 'basic.md' });
+	getInitialProps: ({ params, path }) => {
+		const { group = 'intro', id = 'basic' } = params;
+		return apiFetch('/markdown', { group, id });
 	}
 })
 
@@ -45,18 +47,19 @@ export default class DocumentScene extends Component {
 	}
 
 	render() {
-		const	renderers = { ...Markdown.renderers, CodeBlock, Heading, List };
+		const initialProps = this.props.initialProps,
+			renderers = { ...Markdown.renderers, CodeBlock, Heading, List };
 
 		return <Layout
 			style={styles.container}
 			emulator={<CoreExample/>}>
-			<Markdown source={this.props.data} renderers={renderers}/>
+			<Markdown source={initialProps.data} renderers={renderers}/>
 		</Layout>;
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-
+		paddingHorizontal: 12,
 	},
 });
