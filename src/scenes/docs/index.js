@@ -4,7 +4,7 @@ import { utils } from 'react-universal-ui';
 import Markdown from 'react-markdown';
 
 import Layout from './layout';
-import DocNavigator from './navigator';
+import { CoreExample } from '../../emulationExamples';
 import CodeBlock from '../../components/markdownRenderers/codeBlock';
 import Heading from '../../components/markdownRenderers/heading';
 import List from '../../components/markdownRenderers/list';
@@ -33,12 +33,12 @@ export default class DocumentScene extends Component {
 		};
 	}
 
-	componentDidMount() {
-		this.interval = setInterval(() => {
-			const next = parseInt((Math.random() * 5000) - 2500, 10);
-			this.setState({ number: next });
-		}, 5000);
-	}
+	// componentDidMount() {
+	// 	this.interval = setInterval(() => {
+	// 		const next = parseInt((Math.random() * 5000) - 2500, 10);
+	// 		this.setState({ number: next });
+	// 	}, 5000);
+	// }
 
 	componentWillUnmount() {
 		this.interval && clearInterval(this.interval);
@@ -49,10 +49,7 @@ export default class DocumentScene extends Component {
 
 		return <Layout
 			style={styles.container}
-			emulator={<View
-				style={{ flex: 1, marginTop: 24, alignItems: 'center', justifyContent: 'center' }}>
-				<Text style={{ color: '#ffffff', }}>Hey!</Text>
-			</View>}>
+			emulator={<CoreExample/>}>
 			<Markdown source={this.props.data} renderers={renderers}/>
 		</Layout>;
 	}

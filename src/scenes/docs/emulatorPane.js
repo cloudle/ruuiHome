@@ -26,7 +26,7 @@ export default class EmulatorPane extends Component {
 			headingContainer = { transform: [{ translateY: headerTranslate }] },
 			emulatorContainer = { transform: [{ translateY: emulatorTranslate }] };
 
-		return <View style={[styles.container, this.props.style]}>
+		return <View className="docs-emulator-pane" style={[styles.container, this.props.style]}>
 			<Animated.View style={[styles.headingContainer]}/>
 			<Animated.View style={[styles.emulatorContainer, emulatorContainer]}>
 				<MobileEmulator fakeNavigator={{ color: '#de4f4f', height: 64 }}>

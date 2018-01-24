@@ -41,7 +41,9 @@ export default class ApplicationLayout extends Component {
 			<Navigation logoWidth={sizes.sideBarWidth} style={[emulatorMargin]}/>
 			<DocNavigator/>
 			{showEmulator && <EmulatorPane emulator={this.props.emulator}/>}
-			<View style={[styles.contentContainer, emulatorMargin, this.props.style]}>
+			<View
+				className="docs-container"
+				style={[styles.contentContainer, emulatorMargin, this.props.style]}>
 				{this.props.children}
 			</View>
 			<Footer

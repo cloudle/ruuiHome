@@ -33,7 +33,9 @@ export default class NavigationBar extends Component {
 		const transparent = this.props.home && this.props.pageScrollOffset.y <= 10,
 			containerStyle = transparent ? { backgroundColor: 'transparent', } : {};
 
-		return <View style={[styles.container, containerStyle, this.props.style]}>
+		return <View
+			className="navigation-bar"
+			style={[styles.container, containerStyle, this.props.style]}>
 			{this.renderLogo(transparent)}
 			{this.renderNavigation()}
 		</View>;

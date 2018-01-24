@@ -77,6 +77,19 @@
 			font-family: EvilIcons;
 			src: url('/EvilIcons.ttf') format('truetype');
 		}
+
+		/* Tablet responsive styles ------------------------- */
+		@media screen and (max-width: 1024px) {
+			.docs-container {
+				margin-right: 0 !important;
+			}
+			.docs-emulator-pane {
+				display: none !important;
+			}
+			.navigation-bar {
+				margin-right: 0 !important;
+			}
+		}
 	</style>
   <% if (typeof initialStyles !== 'undefined') { %><%-initialStyles%><% } %>
 </head>
