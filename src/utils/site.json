@@ -80,7 +80,7 @@
 				"url": "tutorial"
 			}, {
 				"title": "First Application",
-				"url": "fist-application"
+				"url": "first-application"
 			}]
 		}, {
 			"title": "COMPONENTS",
@@ -135,12 +135,16 @@
 				"title": "@universalScene",
 				"url": "universal-scene"
 			}, {
-				"title": "@enterAnimation",
-				"url": "enter-animation"
+				"title": "@animated",
+				"url": "animated"
 			}]
 		}, {
 			"title": "UNIVERSAL ROUTER",
-			"url": "universal-router"
+			"url": "universal-router",
+			"childItems": [{
+				"title": "Introduction",
+				"url": "introduction"
+			}]
 		}, {
 			"title": "UTILS",
 			"url": "utils",
