@@ -9,10 +9,12 @@ export const routes = [{
 	exact: true,
 	component: HomeScene,
 }, {
-	path: '/docs/:id',
+	path: '/docs/:group/:id',
+	exact: true,
 	component: DocumentScene,
 }, {
 	path: '/docs',
+	exact: true,
 	component: DocumentScene,
 }, {
 	path: '/tutorials',
