@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, Easing, StyleSheet, View, Text, } from 'react-native';
-import { enterAnimation } from 'react-universal-ui';
 
+import { animated } from '../../decorators';
 import MobileEmulator from '../../components/mobileEmulator';
 import { sizes } from '../../utils';
 import { Style, Element } from '../../typeDefinition';
@@ -11,16 +11,16 @@ type Props = {
 	emulator?: Element,
 };
 
-@enterAnimation({ speed: 500, easing: Easing.out(Easing.back(1.4)) })
+@animated({ speed: 500, easing: Easing.out(Easing.back(1.4)) })
 
 export default class EmulatorPane extends Component {
 	props: Props;
 
 	render() {
-		const emulatorTranslate = this.state.enterAnimation.interpolate({
+		const emulatorTranslate = this.animation.interpolate({
 				inputRange: [0, 1], outputRange: [100, 0],
 			}),
-			headerTranslate = this.state.enterAnimation.interpolate({
+			headerTranslate = this.animation.interpolate({
 				inputRange: [0, 1], outputRange: [-100, 0],
 			}),
 			headingContainer = { transform: [{ translateY: headerTranslate }] },
@@ -29,7 +29,7 @@ export default class EmulatorPane extends Component {
 		return <View style={[styles.container, this.props.style]}>
 			<Animated.View style={[styles.headingContainer]}/>
 			<Animated.View style={[styles.emulatorContainer, emulatorContainer]}>
-				<MobileEmulator>
+				<MobileEmulator fakeNavigator={{ color: '#de4f4f', height: 64 }}>
 					{this.props.emulator}
 				</MobileEmulator>
 			</Animated.View>

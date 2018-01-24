@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { utils, connect, ContextProvider, Modal, Snackbar, Dropdown, } from 'react-universal-ui';
+import { utils, connect, Modal, Snackbar, Dropdown, } from 'react-universal-ui';
 import { Switch, Route, StaticRouter } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 
+import ContextProvider from './components/ContextProvider';
 import { store } from './store';
 import { history } from './store/reducers';
 import { routes } from './router';
