@@ -30,9 +30,9 @@ export default class MobileEmulator extends Component {
 		if (this.props.fakeNavigator) {
 			const color = this.props.fakeNavigator.color || 'red',
 				height = this.props.fakeNavigator.height || 64,
-				containerStyle = { color, height };
+				containerStyle = { backgroundColor: color, height };
 
-			return <View style={[styles.headingContainer, containerStyle]}/>;
+			return <View style={[styles.fakeNavigatorContainer, containerStyle]}/>;
 		} return null;
 	};
 }
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
 		...emulatorSize,
 		borderRadius: 3,
 		overflow: 'hidden',
-		backgroundColor: '#202434',
+		// backgroundColor: '#202434',
+		backgroundColor: '#F5FCFF',
 	},
 	statusBar: {
 		position: 'absolute',
