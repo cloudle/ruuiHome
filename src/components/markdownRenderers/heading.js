@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import type { Element, Style } from '../../typeDefinition';
+
+type Props = {
+	level?: Number | String,
+	children?: Element,
+};
+
 export default class Heading extends Component {
-	render () {
+	props: Props;
+
+	render() {
 		const fontSize = 35 - (this.props.level * 4),
 			textStyles = { fontSize };
 
@@ -10,7 +19,7 @@ export default class Heading extends Component {
 			<Text style={textStyles}>
 				{this.props.children}
 			</Text>
-		</View>
+		</View>;
 	}
 }
 

@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import Icon from '../vector-icons/Ionicons';
+import type { Element, Style } from '../../typeDefinition';
+
+type Props = {
+	children?: Element,
+};
 
 export default class List extends Component {
+	props: Props;
+
 	render() {
 		return <View style={styles.container}>
 			{renderListItems(this.props.children)}
@@ -19,7 +26,7 @@ function renderListItems(roots) {
 	});
 }
 
-function ListNode({ node }) {
+function ListNode({ node }: { node?: String }) {
 	if (typeof node === 'string') {
 		return <ListLeaf content={node}/>;
 	} else {
@@ -29,7 +36,7 @@ function ListNode({ node }) {
 	}
 }
 
-function ListLeaf({ content }) {
+function ListLeaf({ content }: { content?: String }) {
 	const isCompletedTodo = content.substring(0, 3) === '[x]',
 		isPendingTodo = content.substring(0, 3) === '[ ]',
 		realContent = isCompletedTodo || isPendingTodo
@@ -39,11 +46,13 @@ function ListLeaf({ content }) {
 		<Text style={styles.outerText}>
 			{isCompletedTodo && <Icon
 				name="md-checkmark-circle-outline"
-				color="#7eb328" size={18}/>}
+				color="#7eb328"
+				size={18}/>}
 
 			{isPendingTodo && <Icon
 				name="md-ionic"
-				color="#bbbbbb" size={18}/>}
+				color="#bbbbbb"
+				size={18}/>}
 
 			<Text style={styles.itemText}>{realContent}</Text>
 		</Text>

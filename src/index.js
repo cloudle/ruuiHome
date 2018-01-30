@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { utils, connect, Modal, Snackbar, Dropdown, } from 'react-universal-ui';
 import { Switch, Route, StaticRouter } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
+import { hot } from 'react-hot-loader';
 
 import ContextProvider from './components/ContextProvider';
 import { store } from './store';
@@ -72,11 +73,14 @@ type ContainerProps = {
 	ssrContext?: Object,
 };
 
-export default function AppContainer(props: ContainerProps) {
+function AppContainer(props: ContainerProps) {
 	return <ContextProvider store={store}>
 		<App ssrLocation={props.ssrLocation} ssrContext={props.ssrContext}/>
 	</ContextProvider>;
 }
+
+export default utils.isBrowser
+	? hot(module)(AppContainer) : AppContainer;
 
 const styles = StyleSheet.create({
 	container: {

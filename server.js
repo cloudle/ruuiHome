@@ -5,10 +5,10 @@ const invalidate = require('invalidate-module');
 const path = require('path');
 const morgan = require('morgan');
 
-moduleAlias.addAlias('react-native', 'react-native-web');
+/* workaround to avoid crash when loading [art] library on server */
+global.document = { createElement: () => {}, };
 
-document = { createElement: () => {}, };
-// window = { emulate: true, addEventListener: () => {}, };
+moduleAlias.addAlias('react-native', 'react-native-web');
 
 const watcher = chokidar.watch('./src', { ignoreInitial: true });
 
@@ -31,5 +31,5 @@ server.use((req, res, next) => {
 });
 
 server.listen(PORT, () => {
-	console.log('Some mysterious magic stream is raising at..', ` localhost:${PORT} `.bgGreen, ':p');
+	console.log('Your api-server now listening at', ` localhost:${PORT} `.bgGreen, ':p');
 });

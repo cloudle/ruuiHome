@@ -12,7 +12,7 @@ export default class MeetupScene extends Component {
 
 	render() {
 		return <Layout style={styles.container}>
-			<Text>MeetupScene</Text>
+			<Text>MeetupScene!!!!!</Text>
 		</Layout>;
 	}
 }

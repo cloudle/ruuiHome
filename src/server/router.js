@@ -9,6 +9,7 @@ import { utils } from 'react-universal-ui';
 import App from '../';
 import { getMarkdown } from './markdownSource';
 import { routes } from '../router';
+import * as webpackConfigs from '../../webpack.config.babel';
 
 const router = Router();
 
@@ -66,7 +67,8 @@ function responseApplicationSsr(req, res, next, initialProps = {}) {
 		initialProps,
 		initialStyles,
 		initialHtml,
-		serverSide: true
+		serverSide: true,
+		publicPath: webpackConfigs.output.publicPath,
 	});
 }
 
