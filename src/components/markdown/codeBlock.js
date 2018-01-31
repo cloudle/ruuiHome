@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactNative, { View, Text } from 'react-native';
-import * as UniversalUI from 'react-universal-ui';
+import { View, Text } from 'react-native';
 
 import hljs from 'highlight.js/lib/index';
 

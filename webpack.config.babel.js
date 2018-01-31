@@ -62,7 +62,7 @@ module.exports = {
 					plugins: ['react-hot-loader/babel', ]
 				}
 			},
-			{ test: /\.css$/, loader: "style-loader!css-loader" },
+			{ test: /\.css$/, loader: 'style-loader!css-loader' },
 			{
 				test: /\.(png|jpg|svg|ttf)$/,
 				loader: 'file-loader?name=[name].[ext]'
@@ -71,6 +71,10 @@ module.exports = {
 				test: /\.json/,
 				loader: 'json-loader'
 			},
+			{
+				test: /\.md/,
+				loader: 'raw-loader',
+			}
 		],
 	},
 	plugins: [
