@@ -24,6 +24,15 @@ function javascript(Prism) {
 			alias: 'function'
 		}
 	});
+	Prism.languages.insertBefore('javascript', 'function', {
+		'class-name': {
+			pattern: /((?:\b(?:type)\s+)|(?:catch\s+\())[\w.\\]+/i,
+			lookbehind: true,
+			inside: {
+				punctuation: /[.\\]/
+			}
+		},
+	});
 	Prism.languages.insertBefore('javascript', 'string', {
 		'template-string': {
 			pattern: /`(?:\\[\s\S]|[^\\`])*`/,
