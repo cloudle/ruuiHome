@@ -1,7 +1,8 @@
 # Tutorial
 
 ### Basic usage
-```jsx harmony
+
+```jsx
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 

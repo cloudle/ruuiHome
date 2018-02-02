@@ -27,7 +27,7 @@ export default class DocumentScene extends Component {
 
 	render() {
 		const { initialProps } = this.props,
-			markdownContent = utils.isServer
+			markdownContent = true
 				? initialProps.data
 				: require('../../markdowns/intro/installation.md');
 
@@ -59,6 +59,6 @@ const markdownStyles = {
 
 const styles = StyleSheet.create({
 	container: {
-		paddingHorizontal: 12,
+		padding: 40,
 	},
 });

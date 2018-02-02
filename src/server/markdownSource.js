@@ -5,7 +5,7 @@ const fileCache = {};
 
 export function getMarkdown(group, id) {
 	return new Promise((resolve, reject) => {
-		const existingCache = fileCache[reject];
+		const existingCache = null;//fileCache[reject];
 
 		if (existingCache) {
 			resolve(existingCache);
