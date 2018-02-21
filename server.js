@@ -4,6 +4,7 @@ const chokidar = require('chokidar');
 const invalidate = require('invalidate-module');
 const path = require('path');
 const morgan = require('morgan');
+const isProduction = process.env.ENV === 'production';
 
 /* workaround to avoid crash when loading [art] library on server */
 global.document = { createElement: () => {}, };
@@ -22,7 +23,7 @@ const PORT = 3005,
 	server = express();
 
 server.set('view engine', 'ejs');
-server.use(express.static('static'));
+server.use(express.static(isProduction ? 'web' : 'static'));
 server.use(morgan('dev'));
 
 server.use((req, res, next) => {

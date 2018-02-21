@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const colors = require('colors');
@@ -8,7 +7,7 @@ const colors = require('colors');
 const env = process.env.ENV || 'dev',
 	port = process.env.PORT || 3000,
 	isProduction = env === 'production',
-	publicPath = `http://localhost:${port}/`,
+	publicPath = isProduction ? '/' : `http://localhost:${port}/`,
 	htmlOptions = { isProduction, publicPath, useVendorChunks: false },
 	optionalPlugins = [],
 	polyfills = ['babel-polyfill'],
@@ -93,7 +92,7 @@ module.exports = getRevisionPromise.then((gitHash) => {
 			],
 		},
 		plugins: [
-			new DefinePlugin({
+			new webpack.DefinePlugin({
 				ENV: JSON.stringify(env),
 				'process.env.NODE_ENV': JSON.stringify(env),
 			}),

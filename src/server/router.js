@@ -11,7 +11,7 @@ import routes from '../routes';
 import { fetchInitialProps } from './utils';
 import configPromise from '../../webpack.config';
 
-let gitHash = 'nope', webpackConfigs = {};
+let gitHash = 'nope', webpackConfigs = { output: {} };
 const router = Router(),
 	isProduction = process.env.ENV === 'production';
 
