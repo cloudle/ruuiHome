@@ -56,9 +56,11 @@ export function universalScene({ getInitialProps, } = {}) {
 function loadInitialProps(props, displayName) {
 	if (utils.isServer) {
 		return props.staticContext[displayName];
-	} else {
+	} else if (global.ssrInitialProps) {
 		const result = global.ssrInitialProps[displayName] || {};
 		if (global.ssrInitialProps[displayName]) delete global.ssrInitialProps[displayName];
 		return result;
+	} else {
+		return {};
 	}
 }
