@@ -42,6 +42,8 @@ if (!isProduction) {
 			console.log('Build completed after', ` ${buildTime} `.bgGreen);
 		},
 	}));
+} else {
+	optionalPlugins.push(new webpack.optimize.UglifyJsPlugin());
 }
 
 const getRevisionPromise = new Promise((resolve, reject) => {

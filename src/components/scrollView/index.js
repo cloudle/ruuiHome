@@ -60,7 +60,7 @@ export default class ScrollView extends Component {
 	}
 
 	renderScrollIndicator = () => {
-		const indicatorHeight = (this.state.containerHeight ** 2) / this.state.contentHeight,
+		const indicatorHeight = Math.pow(this.state.containerHeight, 2) / this.state.contentHeight,
 			translateY = this.yScrollAnimation.interpolate({
 				inputRange: [0, 1],
 				outputRange: [0, this.state.containerHeight - indicatorHeight],
