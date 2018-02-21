@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, Easing, PanResponder, View, Text, StyleSheet, ScrollView as NativeScrollView } from 'react-native';
+import { Animated, Easing, PanResponder, View, Text, StyleSheet, ScrollView } from 'react-native';
 import { utils } from 'react-universal-ui';
 import type { Element, Style } from '../../typeDefinition';
 
@@ -14,7 +14,7 @@ type Props = {
 	scrollEventThrottle?: Number,
 };
 
-export default class ScrollView extends Component {
+export default class UniversalScrollView extends Component {
 	props: Props;
 	static defaultProps = {
 		scrollEventThrottle: animationThrottle,
@@ -31,6 +31,7 @@ export default class ScrollView extends Component {
 		};
 
 		this.yScrollAnimation = new Animated.Value(0);
+		this.focusAnimation = new Animated.Value(0);
 		this.contentOffset = { x: 0, y: 0 };
 		this.panResponder = PanResponder.create({
 			onStartShouldSetPanResponder: () => true,
@@ -41,42 +42,51 @@ export default class ScrollView extends Component {
 	}
 
 	render() {
-		const { style, ...rest } = this.props;
+		const { style, ...rest } = this.props,
+			platformProps = utils.isWeb ? {
+				onMouseEnter: this.onMouseEnter,
+				onMouseLeave: this.onMouseLeave,
+			} : {};
 
 		return <View
+			{...platformProps}
 			style={style}
 			ref={(instance) => { this.container = instance; }}
 			onLayout={this.onLayout}>
-			<NativeScrollView
+			<ScrollView
 				{...rest}
 				ref={(instance) => { this.scroll = instance; }}
 				className="scroll-view"
 				onScroll={this.onScroll}
 				onContentSizeChange={this.onContentSizeChange}>
 				{this.props.children}
-			</NativeScrollView>
+			</ScrollView>
 			{this.renderScrollIndicator()}
 		</View>;
 	}
 
 	renderScrollIndicator = () => {
 		const indicatorHeight = Math.pow(this.state.containerHeight, 2) / this.state.contentHeight,
+			opacity = this.focusAnimation.interpolate({
+				inputRange: [0, 1], outputRange: [0, 1],
+			}),
 			translateY = this.yScrollAnimation.interpolate({
-				inputRange: [0, 1],
-				outputRange: [0, this.state.containerHeight - indicatorHeight],
+				inputRange: [0, 1], outputRange: [3, this.state.containerHeight - indicatorHeight - 3],
 			}),
 			indicatorColor = this.state.draggingHandler ? '#cccccc' : '#dbdbdb',
+			containerStyle = { opacity },
 			indicatorStyle = {
 				backgroundColor: indicatorColor,
 				height: indicatorHeight,
 				transform: [{ translateY }]
 			};
 
-		return <View style={styles.scrollIndicatorContainer}>
-			<Animated.View
-				{...this.panResponder.panHandlers}
-				style={[styles.scrollIndicator, indicatorStyle]}/>
-		</View>;
+		return indicatorHeight < this.state.containerHeight
+			? <Animated.View style={[styles.scrollIndicatorContainer, containerStyle]}>
+				<Animated.View
+					{...this.panResponder.panHandlers}
+					style={[styles.scrollIndicator, indicatorStyle]}/>
+			</Animated.View> : null;
 	};
 
 	onScroll = (e) => {
@@ -125,12 +135,26 @@ export default class ScrollView extends Component {
 			animated: false,
 		});
 	};
+
+	onMouseEnter = () => {
+		Animated.timing(this.focusAnimation, {
+			toValue: 1, easing: Easing.out(Easing.cubic),
+			duration: 500,
+		}).start();
+	};
+
+	onMouseLeave = () => {
+		Animated.timing(this.focusAnimation, {
+			toValue: 0, easing: Easing.out(Easing.cubic),
+			duration: 500,
+		}).start();
+	};
 }
 
 const indicatorWidth = 6;
 const styles = StyleSheet.create({
 	scrollIndicatorContainer: {
-		position: 'absolute', top: 0, right: 0, bottom: 0,
+		position: 'absolute', top: 0, right: 2, bottom: 0,
 		width: indicatorWidth,
 		backgroundColor: '#ebebeb',
 	},

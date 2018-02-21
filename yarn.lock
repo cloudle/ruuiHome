@@ -177,6 +177,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+animated-scroll-to@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/animated-scroll-to/-/animated-scroll-to-1.1.8.tgz#870b1670e899f0fb8ff039577ad7116366dea7d6"
+
 ansi-escapes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.0.0.tgz#ec3e8b4e9f8064fc02c3ac9b65f1c275bda8ef92"

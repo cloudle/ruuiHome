@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { connect, utils, Button } from 'react-universal-ui';
+import animateScrollTo from 'animated-scroll-to';
 
 import EntypoIcon from '../vector-icons/Entypo';
 import { GithubIcon, } from '../svgs';
@@ -47,7 +48,7 @@ class NavigationBar extends Component {
 
 		return <TouchableOpacity
 			style={[styles.logoContainer, transparentStyle, widthStyle]}
-			onPress={() => { this.props.history.push('/'); }}>
+			onPress={() => { this.onNavigate({ uri: '/' }); }}>
 			<EntypoIcon name="circular-graph" style={styles.ruuiIcon}/>
 			<Text style={styles.repoNameText}>{siteConfigs.siteName}</Text>
 		</TouchableOpacity>;
@@ -72,6 +73,7 @@ class NavigationBar extends Component {
 
 	onNavigate = (route) => {
 		this.props.history.push(route.uri);
+		animateScrollTo(0, { element: window });
 	};
 }
 

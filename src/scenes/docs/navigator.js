@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
 import { connect, utils } from 'react-universal-ui';
+import animateScrollTo from 'animated-scroll-to';
 
 import ScrollView from '../../components/scrollView';
 import MenuItem from './menuItem';
@@ -35,6 +36,7 @@ class DocNavigator extends Component {
 	}
 
 	onNavigate = (group, id) => {
+		animateScrollTo(0, { element: window });
 		group && id && this.props.history.push(`/docs/${group}/${id}`);
 	};
 }
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	container: {
-		zIndex: 20, backgroundColor: '#fff5f5',
+		zIndex: 20, backgroundColor: '#f6f7f9',
 		position: 'fixed', top: sizes.navigationHeight, left: 0, bottom: 0,
 		width: sizes.sideBarWidth,
 	},
