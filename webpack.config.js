@@ -45,56 +45,65 @@ if (!isProduction) {
 	}));
 }
 
-module.exports = {
-	cache: true,
-	devtool: isProduction ? false : 'eval-source-map',
-	entry: {
-		app: isProduction ? [...polyfills, ...entry] : [...polyfills, ...hot, ...entry]
-	},
-	output: {
-		publicPath, path: path.join(__dirname, 'web'),
-		filename: '[name].js',
-		chunkFilename: '[name].js',
-	},
-	resolve: {
-		alias: {
-			'react-native': 'react-native-web',
+const getRevisionPromise = new Promise((resolve, reject) => {
+	require('child_process').exec('git rev-parse HEAD', (err, stdout) => {
+		if (err) reject(err);
+		else resolve(stdout.toString().trim());
+	});
+});
+
+module.exports = getRevisionPromise.then((gitHash) => {
+	return {
+		cache: true,
+		devtool: isProduction ? false : 'eval-source-map',
+		entry: {
+			app: isProduction ? [...polyfills, ...entry] : [...polyfills, ...hot, ...entry]
 		},
-		modules: ['node_modules'],
-		extensions: ['.js']
-	},
-	module: {
-		rules: [
-			{
-				test: /\.js?$/,
-				loader: 'babel-loader',
-				options: {
-					cacheDirectory: true,
-					plugins: ['react-hot-loader/babel', ]
+		output: {
+			publicPath, path: path.join(__dirname, 'web'),
+			filename: isProduction ? `${gitHash}.js` : '[name].js',
+			chunkFilename: '[name].js',
+		},
+		resolve: {
+			alias: {
+				'react-native': 'react-native-web',
+			},
+			modules: ['node_modules'],
+			extensions: ['.js']
+		},
+		module: {
+			rules: [
+				{
+					test: /\.js?$/,
+					loader: 'babel-loader',
+					options: {
+						cacheDirectory: true,
+						plugins: ['react-hot-loader/babel', ]
+					}
+				},
+				{ test: /\.css$/, loader: 'style-loader!css-loader' },
+				{
+					test: /\.(png|jpg|svg|ttf)$/,
+					loader: 'file-loader?name=[name].[ext]'
+				},
+				{
+					test: /\.json/,
+					loader: 'json-loader'
 				}
-			},
-			{ test: /\.css$/, loader: 'style-loader!css-loader' },
-			{
-				test: /\.(png|jpg|svg|ttf)$/,
-				loader: 'file-loader?name=[name].[ext]'
-			},
-			{
-				test: /\.json/,
-				loader: 'json-loader'
-			}
-		],
-	},
-	plugins: [
-		new DefinePlugin({
-			ENV: JSON.stringify(env),
-			'process.env.NODE_ENV': JSON.stringify(env),
-		}),
-		new webpack.optimize.OccurrenceOrderPlugin(),
-		new HtmlWebpackPlugin({
-			...htmlOptions,
-			template: 'index.ejs',
-			filename: 'index.html',
-		}),
-		...optionalPlugins,
-	]
-};
+			],
+		},
+		plugins: [
+			new DefinePlugin({
+				ENV: JSON.stringify(env),
+				'process.env.NODE_ENV': JSON.stringify(env),
+			}),
+			new webpack.optimize.OccurrenceOrderPlugin(),
+			new HtmlWebpackPlugin({
+				...htmlOptions,
+				template: 'index.ejs',
+				filename: 'index.html',
+			}),
+			...optionalPlugins,
+		]
+	};
+});

@@ -9,9 +9,17 @@ import App from '../index';
 import { getMarkdown } from './markdownSource';
 import routes from '../routes';
 import { fetchInitialProps } from './utils';
-import * as webpackConfigs from '../../webpack.config';
+import configPromise from '../../webpack.config';
 
-const router = Router();
+let gitHash = 'nope', webpackConfigs = {};
+const router = Router(),
+	isProduction = process.env.ENV === 'production';
+
+configPromise.then((configs) => { webpackConfigs = configs; });
+require('child_process').exec('git rev-parse HEAD', (err, stdout) => {
+	if (err) console.log(err);
+	else gitHash = stdout.toString().trim();
+});
 
 AppRegistry.registerComponent('App', () => App);
 
@@ -43,6 +51,7 @@ router.use('*', (req, res, next) => {
 			initialHtml,
 			serverSide: true,
 			publicPath: webpackConfigs.output.publicPath,
+			gitHash, isProduction,
 		});
 	});
 });

@@ -153,12 +153,16 @@
   <% } %>
 
   <%if (typeof htmlWebpackPlugin !== 'undefined' && htmlWebpackPlugin.options.useVendorChunks) { %>
-	<script src="<%=htmlWebpackPlugin.options.publicPath%>vendor.cache.js"></script>
+		<script src="<%=htmlWebpackPlugin.options.publicPath%>vendor.cache.js"></script>
   <% } %>
 
   <% if (typeof serverSide !== 'undefined') { %>
-	<script src="<%=publicPath%>vendor.cache.js"></script>
-	<script src="<%=publicPath%>app.js"></script>
+		<% if (typeof isProduction !== 'undefined' && isProduction === true) { %>
+			<script src="<%=gitHash%>.js"></script>
+		<% } else { %>
+			<script src="<%=publicPath%>vendor.cache.js"></script>
+			<script src="<%=publicPath%>app.js"></script>
+		<% } %>
   <% } %>
 </body>
 </html>

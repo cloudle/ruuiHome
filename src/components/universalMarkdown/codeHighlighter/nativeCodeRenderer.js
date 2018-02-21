@@ -17,7 +17,7 @@ type Props = {
 export default function universalCodeRenderer() {
 	return ({ rows, stylesheet, useInlineStyles }: Props) => {
 		const containerElement = virtualizedAvailable ? 'div' : View,
-			useVirtualized = virtualizedAvailable && rows.length >= 50,
+			useVirtualized = virtualizedAvailable && rows.length >= 100,
 			containerStyle = useVirtualized ? { height: '320px' } : {},
 			codeRows = useVirtualized
 				? virtualizedRenderer({ rows, stylesheet, useInlineStyles, rowHeight: 22 })

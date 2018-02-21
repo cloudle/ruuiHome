@@ -35,6 +35,7 @@ export default {
 		msHyphens: 'none',
 		hyphens: 'none',
 		padding: '1em',
+		paddingRight: 3,
 		margin: '.5em 0',
 		overflow: 'auto',
 		borderRadius: '0.3em',
