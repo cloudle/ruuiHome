@@ -16,7 +16,7 @@ export const inlineCode = {
 
 const styles = StyleSheet.create({
 	container: {
-		boxSizing: 'border-box',
+		// boxSizing: 'border-box',
 		backgroundColor: '#f2f2f2',
 		borderColor: 'rgba(255, 0, 0, 0.15)',
 		borderRadius: 3,
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
 	textStyle: {
 		...baseStyles.text,
 		fontFamily: 'Fira Code, Courier',
-		color: colors.main, fontSize: '90%',
+		color: colors.main,
+		//fontSize: '90%',
 	},
 });
 

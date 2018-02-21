@@ -1,15 +1,15 @@
 import { Router } from 'express';
-import cors from 'cors';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import { AppRegistry } from 'react-native';
-import { matchPath } from 'react-router';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { utils } from 'react-universal-ui';
+import { matchRoutes } from 'react-router-config';
 
-import App from '../';
+import App from '../index';
 import { getMarkdown } from './markdownSource';
-import { routes } from '../router';
-import * as webpackConfigs from '../../webpack.config.babel';
+import routes from '../routes';
+import { fetchInitialProps } from './utils';
+import * as webpackConfigs from '../../webpack.config';
 
 const router = Router();
 
@@ -23,53 +23,28 @@ router.use('/markdown', cors(), bodyParser.json(), (req, res, next) => {
 });
 
 router.use('*', (req, res, next) => {
-	let matchedPattern = {}, matchedRoute;
+	const branches = matchRoutes(routes, req.baseUrl);
 
-	for (const route of routes) {
-		const match = matchPath(req.baseUrl, route);
+	/* initialProps fetch that do server-side-data fetching using [branch]
+	 * routeScene implement getInitialProps
+	 * server side fetch it and inject as stringified-json to template
+	 * client-side parse and take that on first load, fetch them by itself on next client-re-render..
+	 * */
 
-		if (match) {
-			matchedPattern = match; matchedRoute = route;
-			break;
-		}
-	}
+	fetchInitialProps(branches).then((prefetchProps) => {
+		const initialProps = { ssrLocation: req.baseUrl, ssrContext: prefetchProps },
+			{ element, getStyleElement } = AppRegistry.getApplication('App', { initialProps, rootTag: 'root' }),
+			initialHtml = renderToString(element),
+			initialStyles = renderToStaticMarkup(getStyleElement());
 
-	if (matchedRoute && matchedRoute.component) {
-		if (matchedRoute.component.getInitialProps) {
-			const getInitialProps = matchedRoute.component.getInitialProps,
-				initialProps = getInitialProps(matchedPattern, utils.isServer, req) || {};
-
-			if (initialProps.then) {
-				initialProps.then((promisedInitialProps) => {
-					responseApplicationSsr(req, res, next, promisedInitialProps);
-				});
-			} else {
-				responseApplicationSsr(req, res, next, initialProps);
-			}
-		} else {
-			responseApplicationSsr(req, res, next);
-		}
-	} else next();
-});
-
-function responseApplicationSsr(req, res, next, initialProps = {}) {
-	const { element, stylesheets } = AppRegistry.getApplication('App', {
-			rootTag: 'root',
-			initialProps: {
-				ssrLocation: req.baseUrl,
-				ssrContext: initialProps,
-			},
-		}),
-		initialHtml = renderToString(element),
-		initialStyles = stylesheets.map(sheet => renderToStaticMarkup(sheet)).join('\n');
-
-	res.render('../index', {
-		initialProps,
-		initialStyles,
-		initialHtml,
-		serverSide: true,
-		publicPath: webpackConfigs.output.publicPath,
+		res.render('../index', {
+			initialProps: prefetchProps,
+			initialStyles,
+			initialHtml,
+			serverSide: true,
+			publicPath: webpackConfigs.output.publicPath,
+		});
 	});
-}
+});
 
 module.exports = router;

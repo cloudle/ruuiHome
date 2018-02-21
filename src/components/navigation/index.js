@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { connect, Button } from 'react-universal-ui';
-import { push } from 'react-router-redux';
+import { connect, utils, Button } from 'react-universal-ui';
 
 import EntypoIcon from '../vector-icons/Entypo';
 import { GithubIcon, } from '../svgs';
 import NavigationItem from './navigationItem';
-import { sizes, colors, siteConfigs, iStyles, baseStyles } from '../../utils';
-import { Style } from '../../typeDefinition';
+import { sizes, colors, siteConfigs, iStyles, baseStyles, withRouter } from '../../utils';
+import { Style, RouterHistory } from '../../typeDefinition';
 
 type Props = {
 	dispatch?: Function,
@@ -18,6 +17,7 @@ type Props = {
 		x: Number,
 		y: Number,
 	},
+	history: RouterHistory,
 };
 
 @connect(({ app }) => {
@@ -26,7 +26,7 @@ type Props = {
 	};
 })
 
-export default class NavigationBar extends Component {
+class NavigationBar extends Component {
 	props: Props;
 
 	render() {
@@ -47,7 +47,7 @@ export default class NavigationBar extends Component {
 
 		return <TouchableOpacity
 			style={[styles.logoContainer, transparentStyle, widthStyle]}
-			onPress={() => { this.props.dispatch(push('/')); }}>
+			onPress={() => { this.props.history.push('/'); }}>
 			<EntypoIcon name="circular-graph" style={styles.ruuiIcon}/>
 			<Text style={styles.repoNameText}>{siteConfigs.siteName}</Text>
 		</TouchableOpacity>;
@@ -71,9 +71,11 @@ export default class NavigationBar extends Component {
 	};
 
 	onNavigate = (route) => {
-		this.props.dispatch(push(route.uri));
+		this.props.history.push(route.uri);
 	};
 }
+
+export default withRouter(NavigationBar);
 
 const edgeSpacing = 20;
 

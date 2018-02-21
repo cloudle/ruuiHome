@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Animated, Easing, StyleSheet, View, Text, } from 'react-native';
+import { utils } from 'react-universal-ui';
 
 import { animated } from '../../decorators';
 import MobileEmulator from '../../components/mobileEmulator';

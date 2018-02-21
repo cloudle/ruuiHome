@@ -7,6 +7,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 console.log('Building common chunks... Grab a cup of coffee while this is running ;)'.bgMagenta);
 
 const devVendors = [
+	'react-hot-loader',
 	'sockjs-client',
 	'url', 'strip-ansi', 'ansi-regex',
 ];
@@ -18,6 +19,7 @@ module.exports = {
 			...devVendors, 'lodash',
 			'react', 'react-dom', 'react-native-web',
 			'redux', 'react-redux',
+			'react-router', 'react-router-config', 'react-router-dom',
 			'babel-polyfill', 'tinycolor2',
 		],
 	},

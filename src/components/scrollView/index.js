@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Animated, Easing, View, Text, StyleSheet, ScrollView as NativeScrollView } from 'react-native';
+import { Animated, Easing, PanResponder, View, Text, StyleSheet, ScrollView as NativeScrollView } from 'react-native';
 import { utils } from 'react-universal-ui';
-import type { Element, Style } from '../typeDefinition';
+import type { Element, Style } from '../../typeDefinition';
 
 const animationThrottle = 16;
 type Props = {
@@ -29,7 +29,15 @@ export default class ScrollView extends Component {
 			contentHeight: 0,
 			indicatorHeight: 0,
 		};
+
 		this.yScrollAnimation = new Animated.Value(0);
+		this.contentOffset = { x: 0, y: 0 };
+		this.panResponder = PanResponder.create({
+			onStartShouldSetPanResponder: () => true,
+			onPanResponderStart: this.onPanResponderStart,
+			onPanResponderRelease: this.onPanResponderRelease,
+			onPanResponderMove: this.onPanResponderMove,
+		});
 	}
 
 	render() {
@@ -57,16 +65,34 @@ export default class ScrollView extends Component {
 				inputRange: [0, 1],
 				outputRange: [0, this.state.containerHeight - indicatorHeight],
 			}),
-			indicatorStyle = { height: indicatorHeight, transform: [{ translateY }] };
+			indicatorColor = this.state.draggingHandler ? '#cccccc' : '#dbdbdb',
+			indicatorStyle = {
+				backgroundColor: indicatorColor,
+				height: indicatorHeight,
+				transform: [{ translateY }]
+			};
 
 		return <View style={styles.scrollIndicatorContainer}>
-			<Animated.View style={[styles.scrollIndicator, indicatorStyle]}/>
+			<Animated.View
+				{...this.panResponder.panHandlers}
+				style={[styles.scrollIndicator, indicatorStyle]}/>
 		</View>;
 	};
 
 	onScroll = (e) => {
 		this.props.onScroll && this.props.onScroll(e);
-		this.getScrollOffset(e.nativeEvent);
+
+		const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent,
+			totalHeightSpace = contentSize.height - layoutMeasurement.height,
+			totalWidthSpace = contentSize.width - layoutMeasurement.width,
+			yScrollProgress = contentOffset.y / totalHeightSpace,
+			xScrollProgress = contentOffset.x / totalWidthSpace;
+
+		this.contentOffset = contentOffset;
+		Animated.timing(this.yScrollAnimation, {
+			toValue: yScrollProgress, easing: Easing.linear(),
+			duration: 0,
+		}).start();
 	};
 
 	onLayout = ({ nativeEvent }) => {
@@ -80,16 +106,24 @@ export default class ScrollView extends Component {
 		this.setState({ contentWidth, contentHeight, });
 	};
 
-	getScrollOffset = ({ contentOffset, contentSize, layoutMeasurement }) => {
-		const totalHeightSpace = contentSize.height - layoutMeasurement.height,
-			totalWidthSpace = contentSize.width - layoutMeasurement.width,
-			yScrollProgress = contentOffset.y / totalHeightSpace,
-			xScrollProgress = contentOffset.x / totalWidthSpace;
+	onPanResponderStart = () => {
+		this.setState({ draggingHandler: true });
+		this.draggingOffset = {
+			x: this.contentOffset.x,
+			y: this.contentOffset.y,
+		};
+	};
 
-		Animated.timing(this.yScrollAnimation, {
-			toValue: yScrollProgress, easing: Easing.linear(),
-			duration: 0,
-		}).start();
+	onPanResponderRelease = (e, gestureState) => {
+		this.setState({ draggingHandler: false });
+	};
+
+	onPanResponderMove = (e, gestureState) => {
+		this.scroll.scrollTo({
+			x: this.draggingOffset.x,
+			y: this.draggingOffset.y + gestureState.dy,
+			animated: false,
+		});
 	};
 }
 

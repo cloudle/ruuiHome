@@ -2,11 +2,11 @@ import React from 'react';
 import { Animated, Easing } from 'react-native';
 
 export function animated({
-		speed = 500, delay = 0, fromValue = 0, toValue = 1,
-		easing = Easing.out(Easing.cubic),
-	} = {}) {
+													 speed = 500, delay = 0, fromValue = 0, toValue = 1,
+													 easing = Easing.out(Easing.cubic),
+												 } = {}) {
 	return function (BaseComponent) {
-		const displayName = `AnimatedEnhancer:${BaseComponent.name}`;
+		const displayName = `AnimatedEnhancer(${BaseComponent.name})`;
 
 		return class AnimatedEnhancer extends BaseComponent {
 			static displayName = displayName;

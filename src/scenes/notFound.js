@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect, Button } from 'react-universal-ui';
-import { push } from 'react-router-redux';
 
 type Props = {
 	dispatch?: Function,
@@ -26,7 +25,9 @@ export default class NotFoundScene extends Component {
 			<Button
 				title="TAKE ME HOME"
 				wrapperStyle={styles.buttonWrapper}
-				onPress={() => this.props.dispatch(push('/'))}/>
+				onPress={() => {
+					// this.props.dispatch(push('/'))
+				}}/>
 		</View>;
 	}
 }

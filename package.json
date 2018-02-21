@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"start": "babel-node --inspect server.js",
-		"web": "webpack-dev-server --hot",
+		"web": "node webpack.devserver",
 		"vendor": "webpack --config webpack.vendor.js",
 		"optimize": "better-npm-run optimize",
 		"bundle": "better-npm-run bundle",
@@ -38,10 +38,13 @@
 		"react-native": "0.52.2",
 		"react-native-drawer": "^2.3.0",
 		"react-native-simple-markdown": "^1.1.0",
-		"react-native-web": "^0.3.2",
+		"react-native-svg": "^6.2.2",
+		"react-native-web": "^0.5.0",
 		"react-redux": "^5.0.6",
 		"react-router": "^4.2.0",
-		"react-router-redux": "^5.0.0-alpha.8",
+		"react-router-config": "^1.0.0-beta.4",
+		"react-router-dom": "^4.2.2",
+		"react-router-native": "^4.2.0",
 		"react-syntax-highlighter": "^7.0.0",
 		"react-universal-ui": "^0.1.78",
 		"react-virtualized": "^9.18.5",
@@ -79,12 +82,12 @@
 		"pretty-bytes": "^4.0.2",
 		"progress-bar-webpack-plugin": "^1.10.0",
 		"raw-loader": "^0.5.1",
-		"react-hot-loader": "^4.0.0-beta.18",
+		"react-hot-loader": "3.0.0-beta.7",
 		"react-test-renderer": "16.2.0",
 		"redux-logger": "^3.0.6",
 		"style-loader": "^0.20.1",
 		"webpack": "^3.10.0",
-		"webpack-dev-server": "^2.9.7"
+		"webpack-dev-server": "^2.11.1"
 	},
 	"jest": {
 		"preset": "react-native"

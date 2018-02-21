@@ -8,17 +8,20 @@ type UniversalSceneProps = {
 
 export function universalScene({ getInitialProps, } = {}) {
 	return function (BaseComponent) {
+		const displayName = `UniversalScene(${BaseComponent.name})`;
+
 		return class UniversalScene extends Component {
 			props: UniversalSceneProps;
+			static displayName = displayName;
 			static getInitialProps = getInitialProps;
 
 			constructor(props) {
 				super(props);
-				this.state = { initialProps: loadInitialProps(props), };
+				this.state = { initialProps: loadInitialProps(props, displayName), };
 			}
 
 			componentWillMount() {
-				this.fetchInitialProps();
+				if (isEmpty(this.state.initialProps)) this.fetchInitialProps();
 			}
 
 			componentWillReceiveProps(nextProps) {
@@ -34,7 +37,9 @@ export function universalScene({ getInitialProps, } = {}) {
 					const initialProps = getInitialProps(props.match, false, {}) || {};
 
 					if (initialProps.then) {
-						initialProps.then(response => this.setState({ initialProps: response }));
+						initialProps.then((response) => {
+							this.setState({ initialProps: response });
+						});
 					} else this.setState({ initialProps });
 				}
 			};
@@ -48,9 +53,12 @@ export function universalScene({ getInitialProps, } = {}) {
 	};
 }
 
-function loadInitialProps(props) {
-	const result = props.staticContext || global.ssrInitialProps || {};
-	delete global.ssrInitialProps;
-
-	return result;
+function loadInitialProps(props, displayName) {
+	if (utils.isServer) {
+		return props.staticContext[displayName];
+	} else {
+		const result = global.ssrInitialProps[displayName] || {};
+		if (global.ssrInitialProps[displayName]) delete global.ssrInitialProps[displayName];
+		return result;
+	}
 }

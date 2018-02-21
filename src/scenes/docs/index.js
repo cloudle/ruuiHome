@@ -22,14 +22,12 @@ type Props = {
 	}
 })
 
-export default class DocumentScene extends Component {
+export default class Document extends Component {
 	props: Props;
 
 	render() {
 		const { initialProps } = this.props,
-			markdownContent = true
-				? initialProps.data
-				: require('../../markdowns/intro/installation.md');
+			markdownContent = initialProps.data;
 
 		return <Layout
 			style={styles.container}
