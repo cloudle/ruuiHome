@@ -30,8 +30,10 @@ export default class Document extends Component {
 
 	render() {
 		const { initialProps } = this.props,
-			markdownContent = utils.isServer ? initialProps.data : require('../../markdowns/intro/installation.md'),
 			pageParams = this.props.match.params,
+			baseDocUrl = 'https://github.com/cloudle/ruuiHome/tree/master/src/markdowns/',
+			docUrl = `${baseDocUrl}${pageParams.group}/${pageParams.id}.md`,
+			markdownContent = initialProps.data, //utils.isServer ? initialProps.data : require('../../markdowns/intro/installation.md'),
 			docId = pageParams.id || 'Docs';
 
 		return <Layout
@@ -44,13 +46,15 @@ export default class Document extends Component {
 					</Text>
 				</View>
 				<View>
-					{pageParams.group && <Button
-						wrapperStyle={styles.buttonWrapper}
-						innerStyle={styles.buttonInner}
-						textStyle={styles.buttonTitle}
-						title="Edit on Github"
-						icon={<GithubIcon size={20}/>}
-						onPress={this.openGithubSource}/>}
+					{pageParams.group && <a href={docUrl} target="_blank">
+						<Button
+							wrapperStyle={styles.buttonWrapper}
+							innerStyle={styles.buttonInner}
+							textStyle={styles.buttonTitle}
+							title="Edit on Github"
+							icon={<GithubIcon size={20}/>}
+							onPress={() => this.openGithubSource(docUrl)}/>
+					</a>}
 				</View>
 			</View>
 			<Markdown
@@ -59,11 +63,8 @@ export default class Document extends Component {
 		</Layout>;
 	}
 
-	openGithubSource = () => {
-		const baseDocUrl = 'https://github.com/cloudle/ruuiHome/tree/master/src/markdowns/',
-			pageParams = this.props.match.params;
-
-		Linking.openURL(`${baseDocUrl}${pageParams.group}/${pageParams.id}.md`);
+	openGithubSource = (url) => {
+		!utils.isWeb && Linking.openURL(url);
 	};
 }
 
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.main
 	},
 	buttonTitle: {
-		// fontSize: 16,
+		fontWeight: '600', color: 'rgba(255, 255, 255, 0.8)',
 	},
 	contentContainer: {
 		padding: 40, paddingTop: 10,
