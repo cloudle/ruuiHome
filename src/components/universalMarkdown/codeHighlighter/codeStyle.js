@@ -2,7 +2,7 @@ export default {
 	'code[class*="language-"]': {
 		color: '#ffffff',
 		fontFamily: "Fira Code, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
-		fontSize: 14,
+		fontSize: 15,
 		direction: 'ltr',
 		textAlign: 'left',
 		whiteSpace: 'pre',
@@ -36,13 +36,14 @@ export default {
 		hyphens: 'none',
 		padding: '1em',
 		paddingRight: 3,
-		margin: '.5em 0',
+		margin: '.5em 0', marginTop: 0,
 		overflow: 'auto',
-		borderRadius: '0.3em',
-		background: '#343542'
+		borderBottomLeftRadius: '10px',
+		borderBottomRightRadius: '10px',
+		background: '#292c35'
 	},
 	':not(pre) > code[class*="language-"]': {
-		background: '#343542',
+		background: '#292c35',
 		padding: '.1em',
 		borderRadius: '.3em'
 	},

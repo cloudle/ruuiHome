@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, } from 'react-native';
+import { atomOneLight as cs } from 'react-syntax-highlighter/styles/hljs';
 
 import SyntaxHighlighter, { registerLanguage } from './prism-light';
 import jsx from './lang/jsx';
@@ -29,11 +30,20 @@ export default class UniversalHighlighter extends Component {
 	}
 
 	render() {
+		const options = this.props.language.split(':'),
+			language = options[0],
+			heading = options[1] || '';
+
 		return <View style={styles.container}>
+			<View style={styles.headingContainer}>
+				<Text style={styles.headingText}>
+					{heading.toUpperCase()} [{language.toUpperCase()}]
+				</Text>
+			</View>
 			{this.state.expand ? <SyntaxHighlighter
 				renderer={nativeCodeRenderer()}
 				style={codeStyles}
-				language={this.props.language}
+				language={language}
 				code={this.props.code}/> : <TouchableOpacity
 				style={styles.loadingContainer}
 				activeOpacity={0.8}
@@ -51,6 +61,15 @@ export default class UniversalHighlighter extends Component {
 const styles = StyleSheet.create({
 	container: {
 
+	},
+	headingContainer: {
+		padding: 12,
+		borderTopLeftRadius: 10,
+		borderTopRightRadius: 10,
+		backgroundColor: '#21242b',
+	},
+	headingText: {
+		color: '#999999', fontWeight: '700',
 	},
 	loadingContainer: {
 		borderRadius: 3, backgroundColor: '#343542', padding: 18,
