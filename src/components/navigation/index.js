@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { connect, utils, Button } from 'react-universal-ui';
 import animateScrollTo from 'animated-scroll-to';
 
-import EntypoIcon from '../vector-icons/Entypo';
+import Icon from '../vector-icons/MaterialIcons';
 import { GithubIcon, } from '../svgs';
 import NavigationItem from './navigationItem';
 import { sizes, colors, siteConfigs, iStyles, baseStyles, withRouter } from '../../utils';
@@ -49,7 +49,7 @@ class NavigationBar extends Component {
 		return <TouchableOpacity
 			style={[styles.logoContainer, transparentStyle, widthStyle]}
 			onPress={() => { this.onNavigate({ uri: '/' }); }}>
-			<EntypoIcon name="circular-graph" style={styles.ruuiIcon}/>
+			<Icon name="whatshot" style={styles.ruuiIcon}/>
 			<Text style={styles.repoNameText}>{siteConfigs.siteName}</Text>
 		</TouchableOpacity>;
 	};

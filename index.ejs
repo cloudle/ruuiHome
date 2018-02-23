@@ -97,15 +97,15 @@
 		.token.cr:before,
 		.token.lf:before,
 		.token.space:before {
-			position: absolute; color: #464c58; z-index: -1;
+			position: absolute; color: rgba(0, 0, 0, 0.05); z-index: -1;
 		}
 
 		.token.tab:not(:empty):before {
-			content: '\21E5'; color: #464c58;
+			content: '\21E5'; color: rgba(0, 0, 0, 0.05);
 		}
 
 		.token.space:before {
-			content: '\00B7'; color: #464c58;
+			content: '\00B7'; color: rgba(0, 0, 0, 0.05);
 		}
 
 		@font-face {
@@ -114,13 +114,8 @@
 		}
 
 		@font-face {
-			font-family: Entypo;
-			src: url('/Entypo.ttf') format('truetype');
-		}
-
-		@font-face {
-			font-family: EvilIcons;
-			src: url('/EvilIcons.ttf') format('truetype');
+			font-family: Ionicons;
+			src: url('/Ionicons.ttf') format('truetype');
 		}
 
 		/* Tablet responsive styles ------------------------- */

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
-import Icon from './vector-icons/EvilIcons';
+import Icon from './vector-icons/Ionicons';
 
 import PageSection from './pageSection';
 import { baseStyles } from '../utils';

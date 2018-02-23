@@ -50,15 +50,15 @@
 			"wowDelay": 0.5,
 			"columns": [
 				{
-					"icon": "trophy",
+					"icon": "md-analytics",
 					"heading": "Write once, run everywhere!",
 					"description": "Build your cross-platform application that run almost everywhere with one single javascript code-base.\n(Browser, Node.js server-side-rendering, iOs, Android, Windows Universal...)"
 				}, {
-					"icon": "camera",
+					"icon": "md-pulse",
 					"heading": "Native and performant",
 					"description": "Unlike Cordova, Universal UI use React Native on iOs and Android build.. which close to Native Mobile application, it is much faster and easier to integrate with Native Mobile modules."
 				}, {
-					"icon": "trophy",
+					"icon": "md-bulb",
 					"heading": "Universal components",
 					"description": "Universal UI give you all essential structure/components you need for Mobile or Web application, you don't have to waste time on picking from tons of library out there and make them work together."
 				}
