@@ -1,9 +1,14 @@
 import React from 'react';
 import { Svg, Path } from 'svgs';
 
-export const GithubIcon = () => {
+type Props = {
+	size: Number,
+};
+
+export const GithubIcon = ({ size }: Props) => {
 	return <Svg
-		style={{ width: 32, height: 32 }}
+		style={{ width: size, height: size }}
+		preserveAspectRatio="none"
 		stroke="none" fill="rgba(255,255,255,0.5)"
 		width="30px" height="29px" viewBox="2 -2 30 29">
 		<Path
@@ -14,4 +19,8 @@ export const GithubIcon = () => {
 	c0.5,0.4,1,1.3,1,2.7c0,1.9,0,3.5,0,4c0,0.4,0.3,0.8,1,0.7c5.8-1.9,9.9-7.3,9.9-13.7c0-8-6.5-14.4-14.5-14.4C9-1.6,2.5,4.9,2.5,12.9
 	z"/>
 	</Svg>;
+};
+
+GithubIcon.defaultProps = {
+	size: 32,
 };
