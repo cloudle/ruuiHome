@@ -19,11 +19,11 @@ export const fatHr = {
 };
 
 const containerStyle = {
-		height: 1, backgroundColor: 'rgba(255, 0, 0, 0.2)',
+		height: 1, backgroundColor: '#f4f6f7',
 		marginTop: 15, marginBottom: 15,
 	},
 	fatContainerStyle = {
-		height: 4, borderRadius: 2, backgroundColor: 'rgba(255, 0, 0, 0.2)',
+		height: 4, borderRadius: 2, backgroundColor: '#f4f6f7',
 		marginTop: 15, marginBottom: 15,
 	};
 

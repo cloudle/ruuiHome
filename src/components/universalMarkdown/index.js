@@ -30,7 +30,7 @@ export default class UniversalMarkdown extends Component {
 	render() {
 		const syntaxTree = parse(this.props.content);
 
-		return <View style={styles.container}>
+		return <View style={[styles.container, this.props.wrapperStyle]}>
 			{reactOutput(syntaxTree)}
 		</View>;
 	}
