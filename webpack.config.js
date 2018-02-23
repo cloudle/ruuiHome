@@ -90,6 +90,10 @@ module.exports = getRevisionPromise.then((gitHash) => {
 				{
 					test: /\.json/,
 					loader: 'json-loader'
+				},
+				{
+					test: /\.md/,
+					loader: 'raw-loader',
 				}
 			],
 		},

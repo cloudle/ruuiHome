@@ -16,6 +16,7 @@ import codeBlock from './codeBlock';
 import image from './image';
 import list from './list';
 import text from './text';
+import checkList from './checklist';
 
 export default {
 	...defaultRules,
@@ -32,4 +33,5 @@ export default {
 	image,
 	list,
 	text,
+	// checkList,
 };

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
 import { defaultRules } from 'simple-markdown';
-import { baseStyles, colors } from './utils';
+import { universalText, baseStyles, colors } from './utils';
 
 export const underline = {
 	order: defaultRules.em.order - 0.5,
@@ -12,17 +11,14 @@ export const underline = {
 		};
 	},
 	react: (node, output, state) => {
-		return <Text key={state} style={styles.textStyle}>
-			{output(node.content, state)}
-		</Text>;
+		return React.createElement(universalText, {
+			key: state.key,
+			style: {
+				...baseStyles.text,
+				color: 'red', textDecorationLine: 'underline',
+			}
+		}, output(node.content, state));
 	},
 };
-
-const styles = StyleSheet.create({
-	textStyle: {
-		...baseStyles.text,
-		color: 'red', textDecorationLine: 'underline'
-	},
-});
 
 export default underline;

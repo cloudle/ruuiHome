@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { defaultRules, blockRegex } from 'simple-markdown';
-import { colors, baseStyles } from './utils';
+import { universalView } from './utils';
 
 export const hr = {
 	...defaultRules.hr,
 	match: blockRegex(/^( *[-*_]){3,} *(?:\n *)+/),
 	react: (node, output, state) => {
-		return <View key={state.key} style={styles.container}/>;
+		return React.createElement(universalView, { key: state.key, style: containerStyle });
 	},
 };
 
@@ -15,17 +14,17 @@ export const fatHr = {
 	...defaultRules.hr,
 	match: blockRegex(/^( *[=]){3,} *(?:\n *)+/),
 	react: (node, output, state) => {
-		return <View key={state.key} style={styles.fatContainer}/>;
+		return React.createElement(universalView, { key: state.key, style: fatContainerStyle });
 	},
 };
 
-const styles = StyleSheet.create({
-	container: {
+const containerStyle = {
 		height: 1, backgroundColor: 'rgba(255, 0, 0, 0.2)',
+		margin: -32, marginTop: 15, marginBottom: 15,
 	},
-	fatContainer: {
+	fatContainerStyle = {
 		height: 4, borderRadius: 2, backgroundColor: 'rgba(255, 0, 0, 0.2)',
-	}
-});
+		margin: -32, marginTop: 15, marginBottom: 15,
+	};
 
 export default hr;

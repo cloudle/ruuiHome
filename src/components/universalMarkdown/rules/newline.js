@@ -6,6 +6,7 @@ import { colors, baseStyles } from './utils';
 export const em = {
 	...defaultRules.newline,
 	react: (node, output, state) => {
+
 		return <Text key={state.key} style={styles.textStyle}>
 			{'\n\n'}
 		</Text>;

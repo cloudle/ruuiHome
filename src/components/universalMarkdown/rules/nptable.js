@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
 import { defaultRules } from 'simple-markdown';
+import { universalText } from './utils';
 
 export const nptable = {
 	...defaultRules.nptable,
 	react: (node, output, state) => {
-		return <Text key={state.key}>Yoohoo</Text>;
+		return React.createElement(universalText, {
+			key: state.key,
+		}, 'Yoohoo');
 	}
 };
 
