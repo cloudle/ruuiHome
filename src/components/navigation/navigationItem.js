@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
 		marginHorizontal: 10,
 	},
 	titleText: {
-		...baseStyles.text, fontSize: 14, color: '#dadeeb', fontWeight: '600',
+		...baseStyles.text, fontSize: 14, color: '#dadeeb', fontWeight: '700',
 	},
 });
