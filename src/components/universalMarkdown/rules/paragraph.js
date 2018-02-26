@@ -13,6 +13,7 @@ export const paragraph = {
 				flexDirection: 'row',
 				alignItems: 'flex-start',
 				justifyContent: 'flex-start',
+				marginBottom: 20,
 			},
 		}, output(node.content, state));
 	},

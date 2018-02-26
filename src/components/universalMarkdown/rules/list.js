@@ -15,14 +15,15 @@ export const list = {
 				[firstOutput, ...restOutput] = lineOutput,
 				startingText = isString(firstOutput) ? firstOutput : '',
 				checkListMatch = startingText.match(/^ *\[(.)\] *.*/),
-				bullet = node.ordered ? i + 1 : '\u2022',
 				childContent = React.createElement(universalText, {
 					style: baseStyles.text,
 				}, checkListMatch
-					? [firstOutput.substring(3), ...restOutput] : [`${bullet} `, lineOutput]);
+					? [firstOutput.substring(3), ...restOutput] : lineOutput);
 
 			return <View key={`${state.key}:${i}`} style={styles.itemContainer}>
-				{renderCheckListIcon(checkListMatch)}
+				{checkListMatch
+					? renderCheckListIcon(checkListMatch)
+					: renderNormalIcon(node, i)}
 				{childContent}
 			</View>;
 		});
@@ -45,17 +46,33 @@ function renderCheckListIcon(match) {
 			icon: 'md-radio-button-on',
 			style: { color: '#bbbbbb', fontSize: 20 },
 		},
-		options = (match && ['*', 'x'].indexOf(match[1]) >= 0) ? completeOption : unCompleteOption;
+		options = (match && ['*', 'x'].indexOf(match[1]) >= 0)
+			? completeOption : unCompleteOption;
 
-	return match ? <Icon name={options.icon} style={[styles.icon, options.style]}/> : null;
+	return <Icon name={options.icon} style={[styles.icon, options.style]}/>;
 }
 
+function renderNormalIcon(node, i) {
+	return node.ordered
+		? <Text style={styles.listNumber}>{i + 1}.</Text>
+		: <View style={styles.listCircle}/>;
+}
+
+const circleSize = 5;
 const styles = StyleSheet.create({
 	itemContainer: {
 		flexDirection: 'row', marginVertical: 6,
 	},
 	icon: {
 		fontSize: 18, marginRight: 8,
+	},
+	listNumber: {
+		fontWeight: '700', marginRight: 4, marginTop: 1,
+	},
+	listCircle: {
+		width: circleSize, height: circleSize, borderRadius: circleSize / 2,
+		marginRight: 4, top: 7,
+		backgroundColor: '#666666',
 	},
 });
 

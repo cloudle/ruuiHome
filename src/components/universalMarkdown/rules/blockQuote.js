@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 	},
 	blockQuoteSectionBar: {
 		width: 4, borderRadius: 2,
-		backgroundColor: colors.main,
+		backgroundColor: 'rgba(255, 0, 0, 0.25)',
 	},
 	textStyle: {
 		...baseStyles.text, padding: 6, paddingLeft: 12,

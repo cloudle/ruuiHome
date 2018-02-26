@@ -8,7 +8,7 @@ export const universalText = Platform.select({ web: 'span', default: Text, });
 export const platformFonts = utils.isWeb ? { fontFamily: '"Open Sans", sans-serif', } : {},
 	baseStyles = {
 		text: {
-			...platformFonts,	backgroundColor: 'transparent', color: color.text,
+			...platformFonts,	backgroundColor: 'transparent', color: '#444444',
 			fontSize: 15,
 		},
 	};

@@ -9,7 +9,7 @@ export const link = {
 	...defaultRules.link,
 	react: (node, output, state) => {
 		const platformProps = Platform.select({
-			web: { href: node.target },
+			web: { href: node.target, target: '_blank', },
 			default: { onPress: () => openUrl(node.target) },
 		});
 
@@ -17,7 +17,7 @@ export const link = {
 			key: state.key,
 			style: {
 				...baseStyles.text,
-				textDecorationLine: 'underline',
+				fontWeight: '600',
 				color: colors.main,
 			},
 			...platformProps,

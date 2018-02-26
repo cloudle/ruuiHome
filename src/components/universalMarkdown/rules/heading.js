@@ -15,6 +15,7 @@ export const heading = {
 				...baseStyles.text,
 				marginTop: 8, marginBottom: 8,
 				fontSize: sizes[node.level] || 8,
+				fontWeight: '700',
 			},
 		}, output(node.content, state));
 	},
