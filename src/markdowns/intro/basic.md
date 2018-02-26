@@ -1,18 +1,31 @@
 ## Why Universal UI?
 [React Universal UI][ruui-url] is a cross-platform **UI Kit** - 
-which could be run on **Native Mobile environment** as well as **Web Browser**,
-the idea is to **write once and really run it "everywhere"**.
+which could be run on **Native Mobile** as well as **Web Browser**,
+the idea is to **write once and really run it "everywhere" with great performance**.
 
-While [React Native][react-native-url] is a great choice for developing application on **Mobile**
-(**iOs** and **Android**), it won't run on **Web Browser**.
-[React Universal UI][ruui-url] make that possible
-(thanks to the awesome [React Native for Web][react-native-web-url] library). 
+While [React Native][react-native-url] is a great choice for developing cross-platform Mobile application 
+on (**iOs** and **Android**), we can't reuse it in **Web Browser**. [React Universal UI][ruui-url] make that possible, thanks to the awesome [React Native for Web][react-native-web-url] library.
 
->**High-quality user interfaces**: React Native for Web makes it easy to create fast, adaptive web UIs in JavaScript. It provides native-like interactions, support for multiple input modes (touch, mouse, keyboard), optimized vendor-prefixed styles, built-in support for RTL layout, built-in accessibility, and integrates with React Dev Tools.
+Inspired by [Ionic Framework][ionic-url], we decided to develop [React Universal UI][ruui-url] as a set of
+cross-platform **UI Components** for [React][react-url] using [Native Native][react-native] building block.
+Because of [React Native][react-native-url]'s native rendering system, [React Universal UI][ruui-url] 
+performance on Mobile is amazing - that is something [Ionic][ionic-url] (browser-emulation) can't do yet.
+  
+[React Native][react-native-url]'s **native modules** (e.g `camera`, `maps`, `notification`...)
+also more powerful (with very active community recent years) compare to [Cordova][cordova-url] (used by [Ionic][ionic-url] and other `hybrid-mobile-framework`).   
+
+We believe [React Native][react-native-url] is the future of Mobile development. 
+
+On **Browser** side, [React Native for Web][react-native-web-url] building block also offer great advantages compare to traditional [React][react-url] (or [Angular][angular-url], [Vue.js][vue-url]):
+
+>**High-quality user interfaces**: React Native for Web makes it easy to create [fast](https://github.com/necolas/react-native-web/blob/master/packages/benchmarks/README.md),
+adaptive web UIs in JavaScript. It provides native-like interactions, support for multiple input modes (touch, mouse, keyboard), optimized vendor-prefixed styles, built-in support for RTL layout, built-in accessibility, and integrates with React Dev Tools.
 
 ---
 
 >**Write once, render anywhere**: React Native for Web interoperates with existing React DOM components and is compatible with the majority of the React Native API. You can develop new components for native and web without rewriting existing code. React Native for Web can also render to HTML and critical CSS on the server using Node.js.
+
+**In summary, [React Universal UI][ruui-url] offer us a performance way to share our application code cross platforms.**
 
 ## How it work?
 - **React Native**: On this side [React Universal UI][ruui-ui] is a normal [React Native][react-native-url] library,
@@ -26,13 +39,9 @@ and **Web** building block - such as **Routing**, **Touch/Mouse** handling... [R
 and provide support for those differences (there're helpers under [utils](/docs/utils/context-provider) module), 
 which save your time and let you focus on write your **Universal App**.
 
----
-
 ## Platforms
 - **Native**: **Android**, **iOs**, **Windows Universal** _(beta support)_ and more (**Mac**, **Linux**) in the future.
 - **Browser**: **Chrome**, **Firefox**, **Safari** >= 7, **IE** >= 10, **Edge**.
-
----
 
 ## Influences
 - [React Material UI][material-ui-url] - [React Universal UI][ruui-url] heavily inspired by their great component design for Web.  

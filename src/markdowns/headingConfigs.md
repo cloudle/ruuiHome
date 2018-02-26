@@ -4,9 +4,12 @@
 [travis-url]: https://travis-ci.org/cloudle/ruui
 [github-url]: https://github.com/cloudle/ruui
 [react-url]: https://facebook.github.io/react/
+[angular-url]: https://angular.io/
+[vue-url]: https://vuejs.org/
 [react-native-url]: https://facebook.github.io/react-native/
 [react-native-web-url]: https://github.com/necolas/react-native-web
 [ruui-url]: https://github.com/cloudle/ruui
+[cordova-url]: https://cordova.apache.org/
 [boilerplate-url]: https://github.com/cloudle/react-universal-ui-boilerplate
 [material-ui-url]: http://www.material-ui.com/
 [ionic-url]: http://ionicframework.com/docs/v2/components/#overview
