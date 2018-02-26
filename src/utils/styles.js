@@ -5,7 +5,7 @@ import { colors, sizes } from './configs';
 export const platformFonts = utils.isWeb ? { fontFamily: '"Open Sans", sans-serif', } : {},
 	baseStyles = {
 		text: {
-			...platformFonts,	backgroundColor: 'transparent', color: colors.text,
+			...platformFonts,	backgroundColor: 'transparent', color: '#444444',
 		},
 	};
 
