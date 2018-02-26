@@ -4,10 +4,12 @@ import { atomOneLight as cs } from 'react-syntax-highlighter/styles/hljs';
 
 import SyntaxHighlighter, { registerLanguage } from './prism-light';
 import jsx from './lang/jsx';
+import bash from './lang/bash';
 import nativeCodeRenderer from './nativeCodeRenderer';
 import codeStyles from './codeStyle';
 
 registerLanguage('javascript', jsx);
+registerLanguage('bash', bash);
 
 type Props = {
 	language?: String,
