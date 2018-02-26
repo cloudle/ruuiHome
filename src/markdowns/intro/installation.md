@@ -1,150 +1,68 @@
-# Installation
+## Required softwares
+You'll need to install required software by [React Native](https://facebook.github.io/react-native/docs/getting-started.html)
+to run **Mobile Native Environment**. At minimum level, you'll need:
 
-In order to get React Universal UI installed in your Applications. What you have to do is create a [React Native App](https://facebook.github.io/react-native/) and install RUUI by npm (or yarn).
+- [Node.js](https://nodejs.org)
+- [Yarn](https://yarnpkg.com/en/) (optional but highly recommended, use `npm install` instead `yarn install` without this)
+- [Git](https://git-scm.com/) (optional but highly recommended, to pull boilerplate source code - without this you could download and extract instead)
 
-### System requirement
+---
 
-* Globally install [Node](https://nodejs.org/en/)
-* Globally install [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/en/)
+## New Project (Universal Native and Web)
+[React Universal UI][ruui-url] ship with [Universal UI Boilerplate][boilerplate-url] which have complete structure
+ and starter sample code, with it you could jump instantly to your code and get thing done.
 
-## npm
-
-[x] Task a
-[x] Task b
-[x] Task c
-[o] Task d
-
-Inside your `React Native` Project, open terminal and run  
-
-```jsx
-import React from 'react';
-import { View, Text } from 'react-native';
-import { utils } from 'react-universal-ui';
-import { AutoSizer, List } from 'react-virtualized';
-
-import { createStyleObject } from './create-element';
-
-const defaultBaseStyle = {
-	fontFamily: "Fira Code, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
-	color: '#ffffff', fontWeight: '500',
-};
-
-type Props = {
-	rows?: Array<Object>,
-	baseStyle?: Object,
-	stylesheet?: Object,
-	useInlineStyles?: Boolean,
-};
-
-export default function universalCodeRenderer(baseStyle = defaultBaseStyle) {
-	const containerElement = utils.isWeb ? 'div' : View;
-
-	return ({ rows, stylesheet, useInlineStyles }: Props) => {
-		const virtualizedList = <AutoSizer>
-			{({ width, height }) => {
-				return <List
-					height={height}
-					width={width}
-					rowHeight={20}
-					rowCount={rows.length}
-					rowRenderer={rowRenderer.bind(null,
-						{ rows, baseStyle, stylesheet, useInlineStyles })}
-					overscanRowCount={5}/>;
-			}}
-		</AutoSizer>;
-
-		return React.createElement(containerElement, {
-			className: 'universal-code-container',
-			style: { height: '300px' },
-		}, virtualizedList);
-	};
-}
-
-type UniversalCodeRowProps = {
-	node?: {
-		properties?: Array<Object>,
-		type?: String,
-		tagName?: String,
-		value?: String,
-		children?: Array<Object>,
-	},
-	stylesheet?: Object,
-	useInlineStyles?: Boolean,
-};
-
-function UniversalCodeRow({ node, baseStyle, stylesheet, useInlineStyles }: UniversalCodeRowProps) {
-	const textElement = utils.isWeb ? 'span' : Text,
-		{ properties, type, tagName, value } = node,
-		classes = ((properties && properties.className) || []) || [],
-		className = classes.join(' ');
-
-	if (type === 'text') {
-		return React.createElement(textElement, { className, }, value);
-	} else if (tagName) {
-		const pureTextStyle = utils.isWeb ?
-				{} : { ...baseStyle, lineHeight: baseStyle.fontSize + 8 },
-			childrenCreator = createChildren({ baseStyle, stylesheet, useInlineStyles }),
-			children = childrenCreator(node.children),
-			generatedTextStyle = createStyleObject(
-				properties.className, { ...properties.style, ...pureTextStyle }, stylesheet);
-
-		return React.createElement(textElement, {
-			className, style: generatedTextStyle,
-		}, children);
-	}
-}
-
-function createChildren({ baseStyle, stylesheet, useInlineStyles }) {
-	let childrenCount = 0;
-	return (children) => {
-		childrenCount += 1;
-		return children.map((child, i) => {
-
-			return <UniversalCodeRow
-				key={`code-segment:${childrenCount}:${i}`}
-				node={child}
-				baseStyle={baseStyle}
-				stylesheet={stylesheet}
-				useInlineStyles={useInlineStyles}/>;
-		});
-	};
-}
-
-function rowRenderer({ rows, baseStyle, stylesheet, useInlineStyles }, { index, key }) {
-	return <UniversalCodeRow
-		node={rows[index]}
-		baseStyle={baseStyle}
-		stylesheet={stylesheet}
-		useInlineStyles={useInlineStyles}
-		key={key}/>;
-}
+```bash:basic-installation
+# clone your project
+git clone https://github.com/cloudle/react-universal-ui-boilerplate.git
+# cd to the new cloned directory
+cd react-universal-ui-boilerplate
+# install dependencies
+yarn install
+# [optional] build common chunks cache - this make our build speed much faster 
+yarn vendor
+# run development server
+yarn web # or | react-native run-ios | react-native run-android 
 ```
 
-```jsx
-...
-import { connect, ContextProvider, Button } from 'react-universal-ui';
+---
 
-@connect(({ app }) => {
-	return {
-		counter: app.counter,
-	};
-})
+## New Project (Fullstack Node.js SSR, Universal Router)
+More advanced boilerplate branch, which support [Node.js](https://nodejs.org) - [server-side-rendering](https://medium.freecodecamp.org/what-exactly-is-client-side-rendering-and-hows-it-different-from-server-side-rendering-bd5c786b340d). Which mean your application run on `iOs`, `Android`, `Browser` and `Node.js` (SSR).  
 
-class MyComponent extends Component { ... }
+This actually is the above `Universal Native and Web` setup with additional steps..
+
+```bash:advanced-installation
+git clone https://github.com/cloudle/react-universal-ui-boilerplate.git
+cd react-universal-ui-boilerplate
+# switch to advanced [browser-ssr] branch
+git checkout browser-ssr
+yarn install 
+yarn vendor
+yarn web # run development server, but we won't primarily use this 
+babel-node --inspect server.js # this run our "real" server with SSR
+# in your terminal cli, it will suggest you open your browser at localhost:3005
 ```
 
-## Yarn  
-Inside your React Native Project, open terminal and run
+---
+## Existing React Native Project
+This pretty simple and strait forward, `install` and use it like what you did with any other [React Native][react-native-url] library.
 
-That's it, now you are free to use all  
-React Universal UI Components within your React Native app.
+```bash:exsting-native-installation
+yarn add react-universal-ui
+```
 
-~~Here's our logo (hover to see the title text):~~
+---
 
-Inline-style: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+## Existing Web Project (using webpack)
+This way require you have certain understanding with `webpack`. Follow this [instruction](https://github.com/necolas/react-native-web/blob/master/website/guides/getting-started.md#adding-to-an-existing-web-app)
+to make your exsiting `webpack` understand (alias) [React Native Web][react-native-web-url]
+(see [Universal UI Boilerplate][boilerplate-url] code for example).
 
-Reference-style: 
-![alt text][logo]
+After make sure [React Native Web][react-native-web-url] work correctly, install [React Universal UI][ruui-url]
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+```bash:exsting-native-installation
+yarn add react-universal-ui
+# or with [npm]
+npm install --save react-universal-ui
+```
