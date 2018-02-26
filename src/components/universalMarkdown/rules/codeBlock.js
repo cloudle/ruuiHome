@@ -13,7 +13,7 @@ export const codeBlock = {
 		return React.createElement(universalView, {
 			key: state.key,
 			style: {
-				marginTop: 20, marginBottom: 20,
+				marginBottom: 20,
 			},
 		}, codeContent);
 	},

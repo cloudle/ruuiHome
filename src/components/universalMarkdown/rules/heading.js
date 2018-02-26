@@ -13,7 +13,7 @@ export const heading = {
 			key: state.key,
 			style: {
 				...baseStyles.text,
-				marginTop: 8, marginBottom: 8,
+				marginTop: 20, marginBottom: 8,
 				fontSize: sizes[node.level] || 8,
 				fontWeight: '700',
 			},

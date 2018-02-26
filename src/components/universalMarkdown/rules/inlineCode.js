@@ -27,8 +27,8 @@ const domContainerStyle = {
 		border: 'solid 1px rgba(255, 0, 0, 0.15)',
 		borderRadius: 3,
 		paddingLeft: 4, paddingRight: 4,
-		paddingTop: 1,
-		fontSize: '90%',
+		paddingTop: 0,
+		fontSize: '92%',
 	}, nativeContainerStyle = {
 		backgroundColor: '#f2f2f2',
 		borderColor: 'rgba(255, 0, 0, 0.15)',
@@ -40,6 +40,7 @@ const domContainerStyle = {
 		...baseStyles.text,
 		fontFamily: 'Fira Code, Courier',
 		color: colors.main,
+		fontSize: '92%',
 	};
 
 export default inlineCode;

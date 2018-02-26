@@ -16,6 +16,7 @@ export const blockQuote = {
 const styles = StyleSheet.create({
 	blockQuoteSection: {
 		flexDirection: 'row',
+		marginBottom: 20,
 	},
 	blockQuoteSectionBar: {
 		width: 4, borderRadius: 2,
