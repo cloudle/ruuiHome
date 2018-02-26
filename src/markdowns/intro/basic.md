@@ -1,7 +1,7 @@
 ## Why Universal UI?
 At the core, [React Universal UI][ruui-url] is a set of cross-platform **UI Components** - 
 which could be run on **Native Mobile** as well as **Web Browser**,
-the idea is to **write once and really run it "everywhere" with great performance**.
+the idea is to **write once and really run it "everywhere" with performance (fast)**.
 
 While [React Native][react-native-url] is a great choice for developing cross-platform Mobile application 
 on (**iOs** and **Android**), we can't reuse it in **Web Browser**. [React Universal UI][ruui-url] make that possible, thanks to the awesome [React Native for Web][react-native-web-url] library.
@@ -30,8 +30,8 @@ adaptive web UIs in JavaScript. It provides native-like interactions, support fo
 **In summary, [React Universal UI][ruui-url] offer us an easy and performance way to share our application code cross platforms.**
 
 ## How it work?
-- **React Native**: On this side [React Universal UI][ruui-ui] is a normal [React Native][react-native-url] library,
-we just install and use it as what we normally did on other [React Native][ruui-ui] libraries (`yarn add react-universal-ui`).
+- **React Native**: On this side [React Universal UI][ruui-url] is a normal [React Native][react-native-url] library,
+we just install and use it as what we normally did on other [React Native][ruui-url] libraries (`yarn add react-universal-ui`).
 
 - **Browser**: [React Native for Web][react-native-web-url] let us run our [React Native][react-native-url] component on **Browser**,
 [React Universal UI][ruui-url] provide universal components (native and web-friendly) and make sure these component behave correctly on **Browser**.
