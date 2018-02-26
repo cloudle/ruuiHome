@@ -61,7 +61,7 @@ function renderNormalIcon(node, i) {
 const circleSize = 5;
 const styles = StyleSheet.create({
 	itemContainer: {
-		flexDirection: 'row', marginVertical: 6,
+		flexDirection: 'row', marginBottom: 15,
 	},
 	icon: {
 		fontSize: 18, marginRight: 8,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 	},
 	listCircle: {
 		width: circleSize, height: circleSize, borderRadius: circleSize / 2,
-		marginRight: 4, top: 7,
+		marginRight: 4, top: 8,
 		backgroundColor: '#666666',
 	},
 });
