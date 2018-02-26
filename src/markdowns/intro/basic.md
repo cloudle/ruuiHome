@@ -5,18 +5,22 @@ the idea is to **write once and really run it "everywhere"**.
 
 While [React Native][react-native-url] is a great choice for developing application on **Mobile**
 (**iOs** and **Android**), it won't run on **Web Browser**.
-[React Universal UI][ruui-url] make that possible, 
-thanks to the great [React Native for Web][react-native-web-url] library. 
+[React Universal UI][ruui-url] make that possible
+(thanks to the awesome [React Native for Web][react-native-web-url] library). 
 
->React Native for Web makes it easy to create fast, adaptive web UIs in JavaScript. It provides native-like interactions, support for multiple input modes (touch, mouse, keyboard), optimized vendor-prefixed styles, built-in support for RTL layout, built-in accessibility, and integrates with React Dev Tools.
+>**High-quality user interfaces**: React Native for Web makes it easy to create fast, adaptive web UIs in JavaScript. It provides native-like interactions, support for multiple input modes (touch, mouse, keyboard), optimized vendor-prefixed styles, built-in support for RTL layout, built-in accessibility, and integrates with React Dev Tools.
 
-----
+---
+
+>**Write once, render anywhere**: React Native for Web interoperates with existing React DOM components and is compatible with the majority of the React Native API. You can develop new components for native and web without rewriting existing code. React Native for Web can also render to HTML and critical CSS on the server using Node.js.
 
 ## How it work?
 - **React Native**: On this side [React Universal UI][ruui-ui] is a normal [React Native][react-native-url] library,
 we just install it (`yarn add react-universal-ui`) and use it as what we normally did on other [React Native][ruui-ui] libraries.
+
 - **Browser**: [React Native for Web][react-native-web-url] let us run our [React Native][react-native-url] component on **Browser**,
-[React Universal UI][ruui-url] take care and make sure these component behave correctly on **Web**.
+[React Universal UI][ruui-url] provide universal components (native and web-friendly) and make sure these component behave correctly on **Browser**.
+
 - **Universal**: There are certain differences between [React Native][react-native-url] 
 and **Web** building block - such as **Routing**, **Touch/Mouse** handling... [React Universal UI][ruui-url] also cares 
 and provide support for those differences (there're helpers under [utils](/docs/utils/context-provider) module), 

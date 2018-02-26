@@ -34,7 +34,7 @@ export default class Document extends Component {
 			baseDocUrl = 'https://github.com/cloudle/ruuiHome/tree/master/src/markdowns/',
 			docUrl = `${baseDocUrl}${pageParams.group}/${pageParams.id}.md`,
 			markdownContent = initialProps.data, //utils.isServer ? initialProps.data : require('../../markdowns/intro/installation.md'),
-			docId = pageParams.id || 'Docs';
+			docId = pageParams.id || 'Motivation';
 
 		return <Layout
 			style={styles.container}
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	headingText: {
-		fontSize: 32,
+		fontSize: 32, color: '#444444',
 	},
 	commandContainer: {
 
