@@ -103,11 +103,10 @@ module.exports = getRevisionPromise.then((gitHash) => {
 				'process.env.NODE_ENV': JSON.stringify(env),
 			}),
 			new webpack.optimize.OccurrenceOrderPlugin(),
-			new HtmlWebpackPlugin({
-				...htmlOptions,
+			new HtmlWebpackPlugin(Object.assign(htmlOptions, {
 				template: 'index.ejs',
 				filename: 'index.html',
-			}),
+			})),
 			...optionalPlugins,
 		]
 	};
