@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { connect, Modal, Dropdown, Snackbar } from 'react-universal-ui';
+import { Modal, Dropdown, Snackbar } from 'react-universal-ui';
+import { connect } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 
 import HomeScene from './scenes/home';

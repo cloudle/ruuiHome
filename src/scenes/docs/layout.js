@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Animated, View, Text, StyleSheet } from 'react-native';
-import { connect } from 'react-universal-ui';
+import { connect } from 'react-redux';
 
 import Navigation from '../../components/navigation';
 import DocNavigator from './navigator';
@@ -17,9 +17,9 @@ type Props = {
 	dimensions?: Object,
 };
 
-@connect(({ app }) => {
+@connect(({ ruui }) => {
 	return {
-		dimensions: app.dimensions,
+		dimensions: ruui.dimensions,
 	};
 })
 @animated()

@@ -1,4 +1,3 @@
-import { appReducer } from 'react-universal-ui';
 import * as Actions from '../actions';
 
 const initialState = {
@@ -6,7 +5,7 @@ const initialState = {
 	pageScrollOffset: { x: 0, y: 0 },
 };
 
-export default appReducer((state = initialState, action) => {
+export default function(state = initialState, action) {
 	switch (action.type) {
 	case Actions.IncreaseCounter:
 		return { ...state, counter: state.counter + action.volume };
@@ -15,4 +14,4 @@ export default appReducer((state = initialState, action) => {
 	default:
 		return state;
 	}
-});
+}

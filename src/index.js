@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { utils, ContextProvider, } from 'react-universal-ui';
+import { utils, RuuiProvider, } from 'react-universal-ui';
+import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 
 import routes from './routes';
@@ -18,9 +19,11 @@ export default function AppContainer(props: ContainerProps) {
 		context: props.ssrContext,
 	} : {};
 
-	return <ContextProvider store={store}>
-		<Router {...routerProps}>
-			{renderRoutes(routes)}
-		</Router>
-	</ContextProvider>;
+	return <RuuiProvider>
+		<Provider store={store}>
+			<Router {...routerProps}>
+				{renderRoutes(routes)}
+			</Router>
+		</Provider>
+	</RuuiProvider>;
 }

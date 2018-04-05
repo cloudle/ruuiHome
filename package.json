@@ -47,7 +47,7 @@
 		"react-router-dom": "^4.2.2",
 		"react-router-native": "^4.2.0",
 		"react-syntax-highlighter": "^7.0.0",
-		"react-universal-ui": "^0.1.78",
+		"react-universal-ui": "^0.2.11",
 		"react-virtualized": "^9.18.5",
 		"simple-markdown": "^0.3.2",
 		"svgs": "^3.1.2",

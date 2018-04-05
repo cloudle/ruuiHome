@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { connect, utils, Button } from 'react-universal-ui';
+import { utils, Button } from 'react-universal-ui';
+import { connect } from 'react-redux';
 import animateScrollTo from 'animated-scroll-to';
 
 import Icon from '../vector-icons/MaterialIcons';

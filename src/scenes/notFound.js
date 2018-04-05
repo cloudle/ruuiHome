@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { connect, Button } from 'react-universal-ui';
+import { Button } from 'react-universal-ui';
+import { connect } from 'react-redux';
 
 type Props = {
 	dispatch?: Function,

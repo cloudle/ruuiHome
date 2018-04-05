@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
-import { connect, utils } from 'react-universal-ui';
+import { utils } from 'react-universal-ui';
+import { connect } from 'react-redux';
 import animateScrollTo from 'animated-scroll-to';
 
 import ScrollView from '../../components/scrollView';

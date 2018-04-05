@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, } from 'react-native';
-import { connect, Button, } from 'react-universal-ui';
+import { Button, } from 'react-universal-ui';
+import { connect } from 'react-redux';
 
 import Layout from '../../components/layout';
 import PageSection from '../../components/pageSection';
