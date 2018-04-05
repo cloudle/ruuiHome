@@ -13,7 +13,7 @@ to run **Mobile Native Environment**. At minimum level, you'll need:
  and starter sample code, with it you could jump instantly to your code and get thing done.
 
 ```bash:basic-installation
-# clone your project
+# clone your boilerplate repo (an empty project to getting started quickly)
 git clone https://github.com/cloudle/react-universal-ui-boilerplate.git
 # cd to the new cloned directory
 cd react-universal-ui-boilerplate

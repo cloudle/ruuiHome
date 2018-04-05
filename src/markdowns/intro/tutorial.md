@@ -1,30 +1,21 @@
-# Tutorial
+# Hot code reload..
 
-### Basic usage
+Assuming that you're using [React Universal Boilerplate][boilerplate-url] from [Installation](/docs/intro/installation) section.
+After `yarn web` start successfully, we'll see our **empty project** at [localhost:3000](localhost:3000) (similar to right pane example).
 
-```jsx
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+>**Note**: With required software for Mobile development you could run
+`react-native run-ios` (**Mac** only) 
+or 
+`react-native run-android` 
+to see exact same thing on your **Mobile** (device/emulator). 
 
-import { Button } from 'react-universal-ui';
+Under [src/index.js](https://github.com/cloudle/react-universal-ui-boilerplate/blob/master/src/index.js),
+is a normal [React Native][react-native-url] code, try to make some change on the `render() {...}` function..
 
-export default class RuuiExample extends React.Component {
-	render() {
-		return <View style={styles.container}>
-		  <Text> This is your first Ruui Application</Text>
-		  <Button 
-		    title="This is the Button" 
-		    wrapperStyle={{ marginTop: 10 }}
-		  />
-      		</View>
-	}
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
+```jsx:src/index.js
+<Text style={styles.welcome}>
+  Welcome to my Awesome Project
+</Text>
 ```
+
+You'll see the change instantly on [localhost:3000](localhost:3000) (**Browser**) or **Mobile** (device/emulator).

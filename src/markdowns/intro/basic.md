@@ -7,7 +7,7 @@ While [React Native][react-native-url] is a great choice for developing cross-pl
 on (**iOs** and **Android**), we can't reuse it in **Web Browser**. [React Universal UI][ruui-url] make that possible, thanks to the awesome [React Native for Web][react-native-web-url] library.
 
 Inspired by [Ionic Framework][ionic-url], we decided to develop [React Universal UI][ruui-url] as a set of
-cross-platform **core UI Components** using [Native Native][react-native] building block.
+cross-platform **core UI Components** using [Native Native][react-native-url] building block.
 And focus on building **documentation**, **extensions** around this core.
 
 Because of [React Native][react-native-url]'s native rendering system, [React Universal UI][ruui-url] 
