@@ -9,13 +9,19 @@ const mustacheRegex = /{{\s*[\w\.]+\s*}}/g;
 
 type InterpolateProps = {
 	style?: Style,
+	textStyle?: Style,
 	template?: String,
 	sources?: Object,
 	renderers?: Object,
 };
 
 export default function Interpolate({
-	style, template = '', sources, renderers = defaultRenderers }: InterpolateProps) {
+	style,
+	textStyle,
+	template = '',
+	sources,
+	renderers = defaultRenderers,
+}: InterpolateProps) {
 	const fragments = getFragments(template, sources),
 		TextRenderer = renderers.Text, LinkRenderer = renderers.Link;
 
@@ -23,9 +29,9 @@ export default function Interpolate({
 		{fragments.map((item, i) => {
 			switch (item.type) {
 			case 'text':
-				return <TextRenderer key={item.text} {...item}/>;
+				return <TextRenderer key={item.text} textStyle={textStyle} {...item}/>;
 			case 'link':
-				return <LinkRenderer key={item.text} {...item}/>;
+				return <LinkRenderer key={item.text} textStyle={textStyle} {...item}/>;
 			default:
 				return null;
 			}
@@ -34,25 +40,31 @@ export default function Interpolate({
 }
 
 type DefaultTextRendererProps = {
-	style?: Style,
+	textStyle?: Style,
 	text?: String,
 };
 
 type DefaultLinkRendererProps = {
 	style?: Style,
+	textStyle?: Style,
 	text?: String,
 	link?: String,
 	linkOpenType?: '' | '',
 };
 
 export const defaultRenderers = {
-	Text: ({ text, style }: DefaultTextRendererProps) => {
-		return <Text style={[styles.text, style]}>{text}</Text>;
+	Text: ({ text, textStyle }: DefaultTextRendererProps) => {
+		return <Text style={[styles.text, textStyle]}>{text}</Text>;
 	},
-	Link: ({ text, style, link, linkOpenType }: DefaultLinkRendererProps) => {
+	Link: ({ text, textStyle, link, linkOpenType }: DefaultLinkRendererProps) => {
+		const linkStyle = [styles.link, textStyle, {
+			color: 'rgba(74,139,252,.7)',
+			fontWeight: '500',
+		}];
+
 		return <TouchableOpacity
 			onPress={() => { window.open(link, linkOpenType || '_blank'); }}>
-			<Text style={[styles.link, style]}>{text}</Text>
+			<Text style={linkStyle}>{text}</Text>
 		</TouchableOpacity>;
 	},
 };
@@ -103,6 +115,6 @@ const styles = StyleSheet.create({
 		...baseStyles.text, fontSize: 13, color: '#bebebe',
 	},
 	link: {
-		...baseStyles.text, fontSize: 13, color: 'rgba(74,139,252,.7)',
+		...baseStyles.text, fontSize: 13,
 	},
 });

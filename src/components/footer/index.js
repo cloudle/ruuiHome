@@ -23,10 +23,12 @@ export default class Footer extends Component {
 			wrapperStyle={[styles.container, this.props.wrapperStyle]}
 			innerStyle={[styles.innerContainer, this.props.innerStyle]}>
 			<Interpolate
+				style={{ flex: 1, marginBottom: 4, minWidth: 450 }}
+				textStyle={styles.textStyle}
 				template={footers.copyright} sources={footers}/>
 			<Interpolate
-				template={footers.license} sources={footers}
-				style={{ flex: 1, justifyContent: 'flex-end', }}/>
+				textStyle={styles.textStyle}
+				template={footers.license} sources={footers}/>
 		</PageSection>;
 	}
 }
@@ -41,8 +43,13 @@ const styles = StyleSheet.create({
 	},
 	innerContainer: {
 		flexDirection: 'row',
+		flexWrap: 'wrap',
+		marginHorizontal: 12,
 	},
 	licenseContainer: {
 		flex: 1, alignItems: 'flex-end',
+	},
+	textStyle: {
+		color: '#1f2128', fontWeight: '200',
 	},
 });

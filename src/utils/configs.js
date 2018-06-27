@@ -18,7 +18,7 @@ export const sizes = {
 	sideBarWidth: 256,
 	emulatorWidth: 350,
 	smallScreen: 1024,
-	maxContentWidth: 940,
+	maxContentWidth: 1024,
 };
 
 function darken(base = '#ffffff', amount = 5) {

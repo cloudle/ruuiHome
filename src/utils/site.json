@@ -16,7 +16,7 @@
 		}
 	],
 	"footer": {
-		"copyright": "Develop from 2016 - Present by {{author}} and great support from {{company}}",
+		"copyright": "Since 2016 - Present by {{author}} and great support from {{company}}",
 		"license": "{{library}} is under {{licenseType}}, do anything you want!",
 		"library": "RUUI",
 		"licenseType": {
