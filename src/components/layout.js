@@ -24,7 +24,7 @@ export default class ApplicationLayout extends Component {
 	}
 
 	render() {
-		const opacity = this.state.enterAnimation.interpolate({
+		const opacity = this.enterAnimation.interpolate({
 				inputRange: [0, 1], outputRange: [0.5, 1],
 			}),
 			wrapperStyle = {
