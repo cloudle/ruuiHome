@@ -32,8 +32,7 @@ export default class HomeScene extends Component {
 	render() {
 		const homeConfigs = siteConfigs.home,
 			headings = homeConfigs.heading,
-			ruuiVersion = packages.dependencies['react-universal-ui'].substring(1),
-			videoIcon = <VideoPlayIcon color="#ffffff" size={30} opacity={0.4}/>;
+			ruuiVersion = packages.dependencies['react-universal-ui'].substring(1);
 
 		return <Layout home style={styles.container}>
 			<View id="particle-header" style={styles.headingContainer}>
@@ -50,10 +49,17 @@ export default class HomeScene extends Component {
 						</Button>
 						<Button
 							wrapperStyle={styles.transparentButtonWrapper}
-							innerStyle={styles.buttonInner}
-							textStyle={styles.buttonText}
-							title={headings.tutorial}
-							icon={videoIcon}/>
+							innerStyle={styles.buttonInner}>
+							<View style={{ flexDirection: 'row' }}>
+								<VideoPlayIcon color="#ffffff" size={30} opacity={0.4}/>
+								<View style={{ flex: 1, marginLeft: 10, }}>
+									<Text style={styles.buttonText}>{headings.tutorial}</Text>
+									<Text style={styles.buttonSmallText}>
+										video tutorial
+									</Text>
+								</View>
+							</View>
+						</Button>
 					</View>
 				</View>
 			</View>
@@ -79,8 +85,7 @@ export default class HomeScene extends Component {
 const headingTextStyles = {
 		...baseStyles.text,	color: '#ffffff', fontWeight: '300', textAlign: 'center',
 	},
-	buttonWidth = 150,
-	buttonRadius = 3;
+	buttonWidth = 150;
 
 const styles = StyleSheet.create({
 	container: {
@@ -113,9 +118,9 @@ const styles = StyleSheet.create({
 		marginTop: 50,
 	},
 	buttonWrapper: {
-		backgroundColor: colors.main,
+		backgroundColor: 'rgba(222, 79, 78, 0.8)',
 		width: buttonWidth, marginHorizontal: 8,
-		borderRadius: buttonRadius,
+		borderRadius: 3,
 	},
 	buttonInner: {
 		height: 45,
@@ -129,8 +134,9 @@ const styles = StyleSheet.create({
 	},
 	transparentButtonWrapper: {
 		backgroundColor: 'rgba(0, 0, 0, 0.3)',
-		borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.6)', borderRadius: 2,
+		borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.2)',
 		width: buttonWidth, marginHorizontal: 8,
+		borderRadius: 2,
 	},
 	darkSectionWrapper: {
 		backgroundColor: '#222736',
