@@ -23,7 +23,7 @@ export default class TransformableZone extends Component {
 		return <View style={this.props.style}>
 			{this.state.children.map((child, i) => {
 				return <Transformable key={i} initialState={{ width: 100, height: 100, }}>
-					{(width, height) => {
+					{({ width, height }) => {
 						return <View style={{ width, height, backgroundColor: '#ffffff', }}>
 							<Text>Hey!</Text>
 						</View>;

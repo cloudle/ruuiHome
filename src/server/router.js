@@ -1,25 +1,26 @@
+import fs from 'fs';
+import path from 'path';
 import { Router } from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import { AppRegistry } from 'react-native';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { matchRoutes } from 'react-router-config';
+import { getEjsTemplate } from 'react-universal-ui/cli-local/util/paths';
+import cors from 'cors';
 
 import App from '../index';
 import { getMarkdown } from './markdownSource';
-import routes from '../routes';
 import { fetchInitialProps } from './utils';
-import configPromise from '../../webpack.config';
+import routes from '../routes';
+import appJson from '../../app.json';
+import ruuiJson from '../../web/ruui.json';
 
-let gitHash = 'nope', webpackConfigs = { output: {} };
+let ruuiConfigs = {};
 const router = Router(),
-	isProduction = process.env.ENV === 'production';
+	isProduction = process.env.ENV === 'production',
+	ruuiConfigPath = path.resolve(process.cwd(), 'ruui.config.js');
 
-configPromise.then((configs) => { webpackConfigs = configs; });
-require('child_process').exec('git rev-parse HEAD', (err, stdout) => {
-	if (err) console.log(err);
-	else gitHash = stdout.toString().trim();
-});
+if (fs.existsSync(ruuiConfigPath)) ruuiConfigs = require(ruuiConfigPath);
 
 AppRegistry.registerComponent('App', () => App);
 
@@ -43,15 +44,21 @@ router.use('*', (req, res, next) => {
 		const initialProps = { ssrLocation: req.baseUrl, ssrContext: prefetchProps },
 			{ element, getStyleElement } = AppRegistry.getApplication('App', { initialProps, rootTag: 'root' }),
 			initialHtml = renderToString(element),
-			initialStyles = renderToStaticMarkup(getStyleElement());
+			initialStyles = renderToStaticMarkup(getStyleElement()),
+			pageTemplate = getEjsTemplate();
 
-		res.render('../index', {
-			initialProps: prefetchProps,
-			initialStyles,
-			initialHtml,
-			serverSide: true,
-			publicPath: webpackConfigs.output.publicPath,
-			gitHash, isProduction,
+		res.render(pageTemplate, {
+			ssrContext: {
+				initialProps: prefetchProps,
+				initialStyles,
+				initialHtml,
+				serverSide: true,
+				publicPath: ruuiConfigs.publicPath || '/',
+				appName: appJson.displayName || appJson.name,
+				buildId: ruuiJson.buildId,
+				isProduction,
+				...ruuiConfigs.ejsTemplate,
+			},
 		});
 	});
 });
