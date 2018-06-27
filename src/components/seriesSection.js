@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
 	},
 	detailInnerContainer: {
 		marginTop: -12,
+		alignItems: 'flex-start',
 	},
 	lengthRowContainer: {
 		flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center',
