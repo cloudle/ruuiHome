@@ -54,9 +54,7 @@ export default class HomeScene extends Component {
 								<VideoPlayIcon color="#ffffff" size={30} opacity={0.4}/>
 								<View style={{ flex: 1, marginLeft: 10, }}>
 									<Text style={styles.buttonText}>{headings.tutorial}</Text>
-									<Text style={styles.buttonSmallText}>
-										video tutorial
-									</Text>
+									<Text style={styles.buttonSmallText}>{headings.subTutorial}</Text>
 								</View>
 							</View>
 						</Button>

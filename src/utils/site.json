@@ -42,7 +42,8 @@
 			"description": "on Web, Node (server side rendering), Native Mobile, Windows Universal, Mac, Linux..",
 			"install": "TRY IT NOW",
 			"version": "Version",
-			"tutorial": "QUICK START"
+			"tutorial": "QUICK START",
+			"subTutorial": "video tutorial"
 		},
 		"": [],
 		"whySection": {
