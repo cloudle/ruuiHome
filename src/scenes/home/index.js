@@ -10,6 +10,7 @@ import SeriesSection from '../../components/seriesSection';
 import { VideoPlayIcon } from '../../components/svgs';
 import particleJs from '../../components/particle';
 import { sizes, colors, siteConfigs, baseStyles } from '../../utils';
+import packages from '../../../package.json';
 
 type Props = {
 	dispatch?: Function,
@@ -31,6 +32,7 @@ export default class HomeScene extends Component {
 	render() {
 		const homeConfigs = siteConfigs.home,
 			headings = homeConfigs.heading,
+			ruuiVersion = packages.dependencies['react-universal-ui'].substring(1),
 			videoIcon = <VideoPlayIcon color="#ffffff" size={30} opacity={0.4}/>;
 
 		return <Layout home style={styles.container}>
@@ -43,7 +45,7 @@ export default class HomeScene extends Component {
 						<Button wrapperStyle={styles.buttonWrapper} innerStyle={styles.buttonInner}>
 							<Text style={styles.buttonText}>{headings.install}</Text>
 							<Text style={styles.buttonSmallText}>
-								{headings.version} {siteConfigs.ruuiVersion}
+								{headings.version} {ruuiVersion}
 							</Text>
 						</Button>
 						<Button
