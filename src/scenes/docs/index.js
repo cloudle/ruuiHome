@@ -74,8 +74,7 @@ const styles = StyleSheet.create({
 	},
 	headingContainer: {
 		flexDirection: 'row', alignItems: 'flex-end',
-		borderBottomWidth: 1, borderColor: '#f4f6f7',
-		paddingLeft: 40, paddingRight: 15,
+		paddingLeft: 18, paddingRight: 18,
 		paddingTop: 20, paddingBottom: 10,
 	},
 	titleContainer: {
@@ -94,6 +93,6 @@ const styles = StyleSheet.create({
 		fontWeight: '600', color: 'rgba(255, 255, 255, 0.8)',
 	},
 	contentContainer: {
-		padding: 40, paddingTop: 10,
+		padding: 18, paddingTop: 10,
 	},
 });

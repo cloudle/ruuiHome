@@ -38,13 +38,15 @@ export default class ApplicationLayout extends Component {
 			emulatorMargin = showEmulator ? { marginRight: sizes.emulatorWidth } : {};
 
 		return <Animated.View style={[styles.container, animatedStyle]}>
-			<Navigation logoWidth={sizes.sideBarWidth} style={[emulatorMargin]}/>
-			<DocNavigator/>
-			{showEmulator && <EmulatorPane emulator={this.props.emulator}/>}
-			<View
-				className="docs-container"
-				style={[styles.contentContainer, emulatorMargin, this.props.style]}>
-				{this.props.children}
+			<View style={styles.bodyContainer}>
+				<Navigation logoWidth={sizes.sideBarWidth} style={[emulatorMargin]}/>
+				<DocNavigator/>
+				{showEmulator && <EmulatorPane emulator={this.props.emulator}/>}
+				<View
+					className="docs-container"
+					style={[styles.contentContainer, emulatorMargin, this.props.style]}>
+					{this.props.children}
+				</View>
 			</View>
 			<Footer
 				fullSize
@@ -58,11 +60,14 @@ const styles = StyleSheet.create({
 	container: {
 		marginTop: sizes.navigationHeight,
 	},
+	bodyContainer: {
+
+	},
 	contentContainer: {
 		minHeight: 1000,
 		marginLeft: sizes.sideBarWidth,
 	},
 	footerContainer: {
-		marginLeft: sizes.sideBarWidth,
+		// marginLeft: sizes.sideBarWidth,
 	},
 });

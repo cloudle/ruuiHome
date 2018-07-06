@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 
 	},
 	headingContainer: {
-		padding: 12,
+		padding: 12, paddingVertical: 6,
 		borderTopLeftRadius: 10,
 		borderTopRightRadius: 10,
 		backgroundColor: '#21242b',

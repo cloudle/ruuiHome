@@ -3,7 +3,7 @@ import { Text, StyleSheet } from 'react-native';
 import { defaultRules, blockRegex } from 'simple-markdown';
 import { universalView, universalText, baseStyles } from './utils';
 
-const sizes = { 1: 28, 2: 21, 3: 16, 4: 12, 5: 10, 6: 8, };
+const sizes = { 1: 34, 2: 24, 3: 22, 4: 18, 5: 14, 6: 8, };
 
 export const heading = {
 	...defaultRules.heading,

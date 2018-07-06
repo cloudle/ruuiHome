@@ -53,6 +53,8 @@ const styles = StyleSheet.create({
 		paddingLeft: 10,
 	},
 	childTitleText: {
-		...baseStyles.text, color: '#555555', fontSize: 14, paddingVertical: 5,
+		...baseStyles.text, color: '#555555',
+		fontSize: 14, fontWeight: '600',
+		paddingVertical: 5,
 	},
 });

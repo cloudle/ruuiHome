@@ -14,6 +14,8 @@ export const paragraph = {
 				alignItems: 'flex-start',
 				justifyContent: 'flex-start',
 				marginBottom: 20,
+				lineHeight: 2,
+				fontWeight: '600',
 			},
 		}, output(node.content, state));
 	},

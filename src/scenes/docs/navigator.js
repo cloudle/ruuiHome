@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	container: {
-		zIndex: 20, backgroundColor: '#f6f7f9',
+		zIndex: 20,
 		position: 'fixed', top: sizes.navigationHeight, left: 0, bottom: 0,
 		width: sizes.sideBarWidth,
 	},

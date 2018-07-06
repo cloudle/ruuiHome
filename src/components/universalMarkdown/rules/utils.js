@@ -9,7 +9,7 @@ export const platformFonts = utils.isWeb ? { fontFamily: '"Open Sans", sans-seri
 	baseStyles = {
 		text: {
 			...platformFonts,	backgroundColor: 'transparent', color: '#444444',
-			fontSize: 15,
+			fontSize: 16,
 		},
 	};
 
