@@ -1,5 +1,4 @@
-const webpack = require('webpack'),
-	env = process.env.ENV || 'development',
+const env = process.env.ENV || 'development',
 	isProduction = env === 'production';
 
 module.exports = {
@@ -10,6 +9,14 @@ module.exports = {
 		'body-parser', 'cookie-parser', 'cors',
 		'react-universal-ui',
 	],
+	webpack: (configs, webpack) => {
+		configs.module.rules.push({
+			test: /\.md/,
+			loader: 'raw-loader',
+		});
+
+		return configs;
+	},
 	ejsTemplate: {
 		preHeading: `
 			<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
