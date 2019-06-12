@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, } from 'react-native';
+import { Linking, StyleSheet, View, TouchableOpacity, Text, Image, } from 'react-native';
 import { Button, } from 'react-universal-ui';
 import { connect } from 'react-redux';
 
@@ -74,10 +74,30 @@ export default class HomeScene extends Component {
 				configs={siteConfigs.advancedSeries}/>
 
 			<ColumnSection
+				wrapperStyle={{ borderTopWidth: 0, }}
+				configs={homeConfigs.caseStudies}
+				itemComponent={CaseStudyItem}/>
+
+			<ColumnSection
 				wrapperStyle={styles.redSectionWrapper}
 				configs={{ dark: true, title: 'UPCOMING MEETUPS' }}/>
 		</Layout>;
 	}
+}
+
+function CaseStudyItem({ instance, index, wowDelay = 0.5 }) {
+	const delay = `${index * wowDelay}s`;
+	return <TouchableOpacity
+		disabled={!instance.url}
+		className="wow fadeIn" data-wow-delay={delay}
+		style={styles.caseStudyItemContainer}
+		onPress={() => instance.url && Linking.openURL(instance.url)}>
+		<Image
+			source={instance.icon}
+			style={styles.caseStudyLogo}
+			resizeMode="contain"/>
+		<Text style={styles.caseStudyDescription}>{instance.description}</Text>
+	</TouchableOpacity>;
 }
 
 const headingTextStyles = {
@@ -149,6 +169,19 @@ const styles = StyleSheet.create({
 		backgroundSize: 'contain',
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
-		height: 400, marginTop: 200,
-	}
+		height: 400,
+	},
+	caseStudyItemContainer: {
+		flex: 1,
+		alignItems: 'center',
+	},
+	caseStudyLogo: {
+		width: 80, height: 80,
+		marginTop: 20,
+	},
+	caseStudyDescription: {
+		marginTop: 16,
+		fontSize: 20,
+		color: '#333333',
+	},
 });

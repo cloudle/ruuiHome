@@ -16,7 +16,7 @@
 		}
 	],
 	"footer": {
-		"copyright": "Since 2016 - Present by {{author}} and great support from {{company}}",
+		"copyright": "Since 2016 - Present by {{author}}, powered by {{company}}",
 		"license": "{{library}} is under {{licenseType}}, do anything you want!",
 		"library": "RUUI",
 		"licenseType": {
@@ -31,7 +31,7 @@
 		},
 		"company": {
 			"type": "link",
-			"text": "Rooxim INC",
+			"text": "ROOXIM",
 			"link": "https://www.rooxim.com"
 		}
 	},
@@ -62,6 +62,22 @@
 					"icon": "md-bulb",
 					"heading": "Universal components",
 					"description": "Universal UI give you all essential structure/components you need for Mobile or Web application, you don't have to waste time on picking from tons of library out there and make them work together."
+				}
+			]
+		},
+		"caseStudies": {
+			"title": "CASE STUDIES",
+			"wowDelay": 0.5,
+			"columns": [
+				{
+					"icon": "/img/usami.jpg",
+					"description": "Point app"
+				}, {
+					"icon": "/img/abc.png",
+					"description": "Point app"
+				}, {
+					"icon": "/img/unicharm.png",
+					"description": "Diary web app"
 				}
 			]
 		}
