@@ -50,7 +50,7 @@
 		"react-universal-ui": "^0.9.56",
 		"react-virtualized": "^9.18.5",
 		"redux": "^4.0.0",
-		"simple-markdown": "^0.3.2",
+		"simple-markdown": "^0.5.2",
 		"svgs": "^3.1.2",
 		"universal-vector-icons": "^4.4.1"
 	},
